@@ -14,10 +14,41 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Customer.init({
-    name: DataTypes.STRING,
-    address: DataTypes.STRING,
-    email: DataTypes.STRING,
-    phoneNumber: DataTypes.STRING
+    name: {type:DataTypes.STRING,
+    validate:{
+      notEmpty:{
+        msg:"Name Cannot Be Empty"
+      }
+    }},
+    address: {type:DataTypes.STRING,
+    validate:{
+      notEmpty:{
+        msg:"Address Cannot Be Empty"
+      }
+    }},
+    email: {type:DataTypes.STRING,
+    validate:{
+      isEmail:{
+        args:true,
+        msg:"Invalid E-Mail Format"
+      },
+      notEmpty:{
+        msg:"E-mail Cannot be Empty"
+      },
+    },unique:true},
+    phoneNumber: {type:DataTypes.STRING,
+      validate:{
+        isNumeric:{
+          msg:"input Phone Number with Number"
+        }
+      }
+    },
+    profilePicture:{type:DataTypes.STRING,
+    validate:{
+      notEmpty:{
+        msg:"Picture Cannot Be Empty"
+      }
+    }}
   }, {
     sequelize,
     modelName: 'Customer',
