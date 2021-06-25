@@ -1,12 +1,10 @@
 const router = require('express').Router()
-const CustomerController = require('../controllers/CustomerController');
+const CustomerRoute = require('../routes/CustomerRouter')
 
 
-router.get('/customers', CustomerController.getCustomer)
-router.get('/customers/:id', CustomerController.getCustomerId)
-router.post('/customers', CustomerController.postCustomer)
-router.delete('/customers/:id', CustomerController.deleteCustomer)
 
+
+router.use('/customers', CustomerRoute)
 
 
 module.exports = router

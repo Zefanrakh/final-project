@@ -23,7 +23,7 @@ class CustomerController{
         .then(customer=>{
             res.status(201).json({customer})
         }).catch(err=>{
-            res.status(500).json({message:'Internal Server Error'})
+            next(err)
         })
     }
 
@@ -32,13 +32,13 @@ class CustomerController{
         Customer.findByPk(id)
         .then(customer=>{
             if(!customer){
-                res.status(404).json({message:"Customer Not Found"})
+                res.status(404).json({message:err.message})
             }else{
                 res.status(200).json({customer})
             }
         })
         .catch(err=>{
-            res.status(500).json({message:"Internal Server Error"})
+            next(err)
         })
     }
 
@@ -47,13 +47,13 @@ class CustomerController{
         Customer.destroy({where:{id}})
         .then(customer=>{
             if(!customer){
-                res.status(404).json({message:"Customer Not Found"})
+                res.status(404).json({message:err.message})
             }else{
                 res.status(200).json({message:"Customer Deleted"})
             }
         })
         .catch(err=>{
-            res.status(500).json({message:"Internal Server Error"})
+            next(err)
         })
     }
 }
