@@ -23,8 +23,12 @@ module.exports = {
       pickuperName: {
         type: Sequelize.STRING
       },
-      chlidName: Sequelize.STRING,
-      childAge: Sequelize.INTEGER,
+      childName: {
+        type: Sequelize.STRING
+      },
+      childAge: {
+        type: Sequelize.INTEGER
+      },
       appointmentDate: {
         type: Sequelize.DATEONLY
       },

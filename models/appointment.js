@@ -17,6 +17,8 @@ module.exports = (sequelize, DataTypes) => {
     CustomerId: DataTypes.INTEGER,
     dropperName: DataTypes.STRING,
     pickuperName: DataTypes.STRING,
+    childName: DataTypes.STRING,
+    childAge: DataTypes.INTEGER,
     appointmentDate: DataTypes.DATEONLY,
     pickupTime: DataTypes.TIME,
     status: DataTypes.STRING
