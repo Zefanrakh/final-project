@@ -11,9 +11,8 @@ module.exports = {
       costPerday: {
         type: Sequelize.INTEGER
       },
-      maxCapacity: {
-        type: Sequelize.INTEGER
-      },
+      maxCapacityIvant: Sequelize.INTEGER,
+      maxCapacityToddler: Sequelize.INTEGER,
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
