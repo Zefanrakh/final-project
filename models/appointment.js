@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Appointment.belongsTo(models.Customer),
       Appointment.hasMany(models.PresenceList),
-      Appointment.belongsTo(modela.Price)
+      Appointment.belongsTo(models.Price)
     }
   };
   Appointment.init({
