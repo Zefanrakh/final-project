@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --detectOpenHandles --forceExit --runInBand",
+    "dev": "nodemon bin/http",
+    "start": "node bin/http"
   },
   "repository": {
     "type": "git",
@@ -25,5 +27,9 @@
     "nodemailer": "^6.6.2",
     "pg": "^8.6.0",
     "sequelize": "^6.6.2"
+  },
+  "devDependencies": {
+    "jest": "^27.0.5",
+    "supertest": "^6.1.3"
   }
 }

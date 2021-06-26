@@ -9,16 +9,19 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       username: {
+        allowNull: false,
+        unique: true,
         type: Sequelize.STRING
       },
       password: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       role: {
         type: Sequelize.STRING
       },
-      CustomerId: {
-        type: Sequelize.INTEGER
+      profilePicture: {
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,

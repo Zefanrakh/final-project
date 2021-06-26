@@ -17,21 +17,40 @@ module.exports = {
         onUpdate: 'cascade',
         onDelete: 'cascade'
       },
-      dropperName: {
+      childName: {
+        allowNull: false,
         type: Sequelize.STRING
       },
-      pickuperName: {
-        type: Sequelize.STRING
+      childAge: {
+        allowNull: false,
+        type: Sequelize.INTEGER
       },
-      chlidName: Sequelize.STRING,
-      childAge: Sequelize.INTEGER,
-      appointmentDate: {
+      startDate: {
+        allowNull: false,
         type: Sequelize.DATEONLY
       },
-      pickupTime: {
-        type: Sequelize.TIME
+      endDate: {
+        allowNull: false,
+        type: Sequelize.DATEONLY
       },
       status: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      PriceId:{
+        allowNull: false,
+        type: Sequelize.INTEGER
+      },
+      quantity:{
+        allowNull: false,
+        type: Sequelize.INTEGER
+      },
+      total:{
+        allowNull: false,
+        type: Sequelize.INTEGER
+      },
+      note: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       createdAt: {
