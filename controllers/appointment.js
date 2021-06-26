@@ -1,4 +1,4 @@
-const { Appointment } = require('../models')
+const { Appointment, Customer } = require('../models')
 
 class Controller {
     static async getAppointment(req, res, next){
@@ -6,10 +6,11 @@ class Controller {
             let appointments
             if (req.query.status){
                 appointments = await Appointment.findAll({
-                    where: {status: eq.query.status}
+                    where: {status: eq.query.status},
+                    include: {model: Customer}
                 })
             } else {
-                appointments = await Appointment.findAll()
+                appointments = await Appointment.findAll({ include: {model: Customer} })
             }
             res.status(200).json(appointments)
         } catch (error) {
@@ -18,9 +19,13 @@ class Controller {
     }
 
     static async postAppointment(req, res, next){
-        const {CustomerId, dropperName, pickuperName, childName, childAge, appointmentDate, pickupTime, status} = req.body
         try {
-            let insertedData = await Appointment.create({CustomerId, dropperName, pickuperName, childName, childAge, appointmentDate, pickupTime, status})
+            req.currentUser = {CustomerId: 1}
+            let {CustomerId, childName, childAge, startDate, endDate, status, PriceId, quantity, total, note} = req.body
+            if(!CustomerId){
+                CustomerId = req.currentUser.CustomerId
+            }
+            let insertedData = await Appointment.create({CustomerId, childName, childAge, startDate, endDate, status, PriceId, quantity, total, note})
             res.status(201).json(insertedData)
         } catch (error) {
             next(error);
@@ -29,7 +34,20 @@ class Controller {
 
     static async getAppointmentById(req, res, next){
         try {
-            let appointment = await Appointment.findOne({where: {id: req.params.id}})
+            let appointment = await Appointment.findOne({where: {id: req.params.id}, include: {model: Customer}})
+            if(appointment){
+                res.status(200).json(appointment)
+            }else{
+                next({status:404, msg: 'data not found'})
+            }
+        } catch (error) {
+            next(error);
+        }
+    }
+
+    static async getAppointmentByCustomerId(req, res, next){
+        try {
+            let appointment = await Appointment.findAll({where: {Customerid: req.params.Customerid}})
             if(appointment){
                 res.status(200).json(appointment)
             }else{
