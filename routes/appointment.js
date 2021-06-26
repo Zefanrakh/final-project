@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const Controller = require('../controllers/appointment')
+const Controller = require('../controllers/appointmentController')
 
 router.get('/', Controller.getAppointment)
 router.post('/', Controller.postAppointment)

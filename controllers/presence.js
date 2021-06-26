@@ -3,8 +3,8 @@ const { PresenceList, Appointment } = require('../models')
 class Controller {
     static async postPresence(req, res, next) {
         try {
-            const { dropperName, pickuperName, pickupTime, AppointmentId } = rerq.body
-            const presenceDate = Date()
+            const { dropperName, pickuperName, pickupTime, AppointmentId } = req.body
+            const presenceDate = new Date()
             const insertedData = await PresenceList.create({dropperName, pickuperName, pickupTime, presenceDate, AppointmentId })
             res.status(201).json(insertedData)
         } catch (error) {
