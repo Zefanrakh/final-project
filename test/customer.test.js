@@ -1,34 +1,46 @@
 const request = require('supertest')
+const { sequelize } = require('../models/index')
+const { queryInterface } = sequelize
 const app = require('../app')
 const {Customer} = require('../models/index')
-let id = 1
+let id=0;
 
-// beforeAll((done)=>{
-//   // createAdmin()
-//   request(app)
-//   .post('/customers')
-//   .send({
-//       name:'Rizky',
-//       address:"Jl.Patimura,No 4",
-//       email:"Rizky@aol.com",
-//       phoneNumber:"081269327604",
-//       profilePicture:"No Profile"
-//       })
-//   .then(customer=>{
-//       done()
-//   }).catch(err=>{
-//       done(err)
-//   })
-// })
-
-afterAll((done)=>{
-  Customer.destroy({ truncate: { cascade: true } })
-  .then(()=>{
+beforeAll((done)=>{
+  // createAdmin()
+  request(app)
+  .post('/customers')
+  .send({
+      name:'Rizky',
+      address:"Jl.Patimura,No 4",
+      email:"Rizky@aol.com",
+      phoneNumber:"081269327604"
+      })
+  .then(customer=>{
+    console.log(customer.body.customer.id,"<<<<<<<<<<")
+    id = customer.body.customer.id
       done()
-  })
-  .catch(err=>{
+  }).catch(err=>{
       done(err)
   })
+})
+
+afterAll((done)=>{
+  if(process.env.NODE_ENV === "test"){
+    // Customer.destroy({ truncate: {cascade:true, restartIdentity:true}})
+    //   .then(()=>{
+    //       done()
+    //   })
+    //   .catch(err=>{
+    //       done(err)
+    //   })
+    queryInterface.bulkDelete("Customers", null, { truncate: true, restartIdentity:true, cascade:true }) 
+      .then(()=>{
+        done()
+    })
+    .catch(err=>{
+        done(err)
+    })
+  }
 })
 
 describe ('Read / Customer', function(){
@@ -56,8 +68,7 @@ describe('Post / Customer', function() {
         name:'Samuel',
         address:"Jl.Patimura,No 3",
         email:"samuel@aol.com",
-        phoneNumber:"081237261153",
-        profilePicture:"None"
+        phoneNumber:"081237261153"
       })
       .then(response => {
         let{status,body} = response
@@ -78,13 +89,12 @@ describe('Post / Customer', function() {
         name:'',
         address:"",
         email:"",
-        phoneNumber:"",
-        profilePicture:""
+        phoneNumber:""
       })
       .then(response => {
         let{status,body} = response
           expect(status).toBe(400)
-            expect(body).toHaveProperty("message",["Name Cannot Be Empty", "Address Cannot Be Empty", "Invalid E-Mail Format", "E-mail Cannot be Empty", "input Phone Number with Number", "Picture Cannot Be Empty"])
+          expect(body).toHaveProperty("message",["Name Cannot Be Empty", "Address Cannot Be Empty", "Invalid E-Mail Format", "E-mail Cannot be Empty", "input Phone Number with Number"])
           done();
       })
       .catch(err =>{
@@ -101,8 +111,7 @@ describe('Post / Customer', function() {
         name:'',
         address:"Jl.Patimura,No 3",
         email:"samuel@aol.com",
-        phoneNumber:"081237261153",
-        profilePicture:"None"
+        phoneNumber:"081237261153"
       })
       .then(response => {
         let{status,body} = response
@@ -124,8 +133,7 @@ describe('Post / Customer', function() {
         name:'Samuel',
         address:"Jl.Patimura,No 3",
         email:"samuelAja",
-        phoneNumber:"081237261153",
-        profilePicture:"None"
+        phoneNumber:"0812372611533"
       })
       .then(response => {
         let{status,body} = response
@@ -146,8 +154,7 @@ describe('Post / Customer', function() {
         name:'Samuel',
         address:"Jl.Patimura,No 3",
         email:"samuel@aol.com",
-        phoneNumber:"09128tELP132",
-        profilePicture:"None"
+        phoneNumber:"09128tELP132"
       })
       .then(response => {
         let{status,body} = response
@@ -162,6 +169,7 @@ describe('Post / Customer', function() {
 }); 
 
 describe ('Delete /  Customer', function(){
+  console.log(id, "<<<<<<<<<<<<<<<<<")
   it('Success Delete Customer, Code:200', function(done){
       request(app)
       .delete(`/customers/${id}`)

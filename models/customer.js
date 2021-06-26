@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Customer.belongsTo(models.User)
     }
   };
   Customer.init({
@@ -43,12 +44,7 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
-    profilePicture:{type:DataTypes.STRING,
-    validate:{
-      notEmpty:{
-        msg:"Picture Cannot Be Empty"
-      }
-    }}
+    UserId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Customer',

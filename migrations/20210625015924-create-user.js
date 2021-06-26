@@ -17,9 +17,6 @@ module.exports = {
       role: {
         type: Sequelize.STRING
       },
-      CustomerId: {
-        type: Sequelize.INTEGER
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
