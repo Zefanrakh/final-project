@@ -1,17 +1,47 @@
-const { Customer } = require("../models");
+const { isSame } = require("../helpers/bcrypt");
+const { User, Customer } = require("../models");
+const { generateToken } = require("../helpers/jwt");
 
 class UserController {
   static register(req, res, next) {
-    const { name, picture, email, phoneNumber, address } = req.user;
-    Customer.create({
-      name,
-      email,
-      picture,
-      phoneNumber,
-      address,
+    const { username, email, password } = req.body;
+    const defaultData = {
+      phoneNumber: 12345678,
+      name: username,
+      address: "1st street, 3rd block",
+    };
+
+    User.create({
+      username,
+      password,
+      profilePicture:
+        "https://cdn.pixabay.com/photo/2015/03/04/22/35/head-659652_960_720.png",
+      role: "customer",
     })
       .then((user) => {
-        res.status(201).json(user);
+        return Customer.create({
+          email,
+          ...defaultData,
+          UserId: user.id,
+        });
+      })
+      .then((customer) => {
+        return Customer.findOne({
+          where: {
+            id: customer.id,
+          },
+          include: {
+            model: User,
+            attributes: ["username", "role", "profilePicture"],
+          },
+        });
+      })
+      .then((user) => {
+        const access_token = generateToken({
+          username: user.User.username,
+          role: user.User.role,
+        });
+        res.status(201).json({ user, access_token });
       })
       .catch((err) => {
         next(err);
@@ -19,14 +49,80 @@ class UserController {
   }
 
   static login(req, res, next) {
-    const { name, picture, email, phoneNumber, address } = req.user;
+    const { username, password, role } = req.body;
+
+    User.findOne({
+      where: {
+        username,
+      },
+    })
+      .then((user) => {
+        if (user) {
+          const success = isSame(password, user.password);
+          if (success) {
+            const access_token = generateToken({
+              username: user.username,
+              role: user.role,
+            });
+            res.status(200).json({
+              access_token,
+              user: {
+                username: user.username,
+                profilePicture: user.profilePicture,
+                role: user.role,
+              },
+            });
+          } else {
+            throw { status: 404, msg: "Wrong email or password" };
+          }
+        } else {
+          throw { status: 404, msg: "Wrong email or password" };
+        }
+      })
+      .catch((err) => {
+        next(err);
+      });
+  }
+
+  static getCurrentUser(req, res, next) {
+    const { username } = req.user;
+    User.findOne({
+      where: {
+        username,
+      },
+    })
+      .then((user) => {
+        res.status(200).json({ user });
+      })
+      .catch((err) => {
+        next(err);
+      });
+  }
+
+  static checkExistingEmail(req, res, next) {
+    const { email } = req.body;
     Customer.findOne({
       where: {
         email,
       },
     })
       .then((user) => {
-        res.status(200).json(user);
+        res.status(200).json({ user });
+      })
+      .catch((err) => {
+        next(err);
+      });
+  }
+
+  static checkExistingUsername(req, res, next) {
+    const { username } = req.body;
+    User.findOne({
+      where: {
+        username,
+      },
+    })
+      .then((user) => {
+        res.status(200).json({ user });
       })
       .catch((err) => {
         next(err);

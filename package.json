@@ -35,6 +35,7 @@
     "xendit-node": "^1.13.0"
   },
   "devDependencies": {
+    "dotenv": "^10.0.0",
     "jest": "^27.0.5",
     "supertest": "^6.1.3"
   },
