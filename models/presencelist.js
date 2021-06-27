@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
         notNull: {msg: 'Dropper name can not null'}
       }
     },
-    pickuperName: {
+    pickupperName: {
       type: DataTypes.STRING,
       allowNull:false,
       validate: {
