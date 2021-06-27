@@ -1,6 +1,6 @@
 const admin = require("../firebase");
 
-const authCheck = async (req, res, next) => {
+const fbAuthCheck = async (req, res, next) => {
   // console.log(req.headers); // token
   try {
     const decodedIdToken = await admin
@@ -17,4 +17,4 @@ const authCheck = async (req, res, next) => {
   }
 };
 
-module.exports = authCheck;
+module.exports = fbAuthCheck;
