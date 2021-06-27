@@ -13,7 +13,7 @@ class Controller {
         }
     }
 
-    static async getPresence() {
+    static async getPresence(req, res, next) {
         try {
             const presenceList = await PresenceList.findAll({include: {model: Appointment}})
             res.status(200).json(presenceList)
