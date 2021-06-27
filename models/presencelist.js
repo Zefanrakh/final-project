@@ -34,10 +34,21 @@ module.exports = (sequelize, DataTypes) => {
       presenceDate: DataTypes.DATEONLY,
       AppointmentId: DataTypes.INTEGER,
     },
-    {
-      sequelize,
-      modelName: "PresenceList",
-    }
-  );
+    pickupperName: {
+      type: DataTypes.STRING,
+      allowNull:false,
+      validate: {
+        notEmpty: {msg: 'Pickuper name can not be empty'},
+        notNull: {msg: 'Pickuper name can not null'}
+      }
+    },
+    pickupTime: DataTypes.TIME,
+    presenceDate: DataTypes.DATEONLY,
+    AppointmentId: DataTypes.INTEGER
+  }, {
+    sequelize,
+    modelName: 'PresenceList',
+  });
+
   return PresenceList;
 };

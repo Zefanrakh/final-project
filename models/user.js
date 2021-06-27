@@ -11,18 +11,16 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       User.hasOne(models.Customer);
     }
-  }
-  User.init(
-    {
-      username: DataTypes.STRING,
-      password: DataTypes.STRING,
-      role: DataTypes.STRING,
-      profilePicture: DataTypes.STRING,
-    },
-    {
-      sequelize,
-      modelName: "User",
-    }
-  );
+  };
+  User.init({
+    username: DataTypes.STRING,
+    password: DataTypes.STRING,
+    role: DataTypes.STRING,
+    profilePicture: DataTypes.STRING
+  }, {
+    sequelize,
+    modelName: 'User',
+  });
+
   return User;
 };
