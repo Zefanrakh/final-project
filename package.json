@@ -1,0 +1,36 @@
+{
+  "name": "final-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --detectOpenHandles --forceExit --runInBand",
+    "dev": "nodemon bin/http",
+    "start": "node bin/http"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zefanrakh/final-project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Zefanrakh/final-project/issues"
+  },
+  "homepage": "https://github.com/Zefanrakh/final-project#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "firebase-admin": "^9.10.0",
+    "jsonwebtoken": "^8.5.1",
+    "nodemailer": "^6.6.2",
+    "pg": "^8.6.0",
+    "sequelize": "^6.6.2"
+  },
+  "devDependencies": {
+    "jest": "^27.0.5",
+    "supertest": "^6.1.3"
+  }
+}
