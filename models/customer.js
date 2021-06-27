@@ -9,9 +9,10 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Customer.belongsTo(models.User)
-      Customer.hasMany(models.Appointment)
+      Customer.belongsTo(models.User);
+      Customer.hasMany(models.Appointment);
     }
+
   };
   Customer.init({
     name: {type:DataTypes.STRING,
@@ -48,5 +49,6 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Customer',
   });
+
   return Customer;
 };
