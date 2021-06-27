@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       User.hasOne(models.Customer);
     }
+
   }
   User.init(
     {
@@ -41,5 +42,7 @@ module.exports = (sequelize, DataTypes) => {
       },
     }
   );
+
+  
   return User;
 };
