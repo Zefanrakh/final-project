@@ -1,11 +1,11 @@
-const { verify } = require("jsonwebtoken");
+const { verifyToken } = require("../helpers/jwt");
 const { User } = require("../models");
 
 const authentication = async (req, res, next) => {
   try {
     const access_token = req.headers.access_token;
     if (access_token) {
-      const payload = verify(access_token);
+      const payload = verifyToken(access_token);
       const user = await User.findOne({
         where: {
           username: payload.username,

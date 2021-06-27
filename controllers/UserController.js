@@ -4,19 +4,48 @@ const { generateToken } = require("../helpers/jwt");
 
 class UserController {
   static register(req, res, next) {
-    // const { name, picture, email, phoneNumber, address } = req.user;
-    // User.create({
-    //   username: name,
-    //   password,
-    //   profilePicture,
-    //   role,
-    // })
-    //   .then((user) => {
-    //     res.status(201).json(user);
-    //   })
-    //   .catch((err) => {
-    //     next(err);
-    //   });
+    const { username, email, password } = req.body;
+    const defaultData = {
+      phoneNumber: 12345678,
+      name: username,
+      address: "1st street, 3rd block",
+    };
+
+    User.create({
+      username,
+      password,
+      profilePicture:
+        "https://cdn.pixabay.com/photo/2015/03/04/22/35/head-659652_960_720.png",
+      role: "customer",
+    })
+      .then((user) => {
+        return Customer.create({
+          email,
+          ...defaultData,
+          UserId: user.id,
+        });
+      })
+      .then((customer) => {
+        return Customer.findOne({
+          where: {
+            id: customer.id,
+          },
+          include: {
+            model: User,
+            attributes: ["username", "role", "profilePicture"],
+          },
+        });
+      })
+      .then((user) => {
+        const access_token = generateToken({
+          username: user.User.username,
+          role: user.User.role,
+        });
+        res.status(201).json({ user, access_token });
+      })
+      .catch((err) => {
+        next(err);
+      });
   }
 
   static login(req, res, next) {
@@ -57,6 +86,36 @@ class UserController {
 
   static getCurrentUser(req, res, next) {
     const { username } = req.user;
+    User.findOne({
+      where: {
+        username,
+      },
+    })
+      .then((user) => {
+        res.status(200).json({ user });
+      })
+      .catch((err) => {
+        next(err);
+      });
+  }
+
+  static checkExistingEmail(req, res, next) {
+    const { email } = req.body;
+    Customer.findOne({
+      where: {
+        email,
+      },
+    })
+      .then((user) => {
+        res.status(200).json({ user });
+      })
+      .catch((err) => {
+        next(err);
+      });
+  }
+
+  static checkExistingUsername(req, res, next) {
+    const { username } = req.body;
     User.findOne({
       where: {
         username,
