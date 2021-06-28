@@ -1,5 +1,6 @@
 "use strict";
 const { Model } = require("sequelize");
+const now = new Date().toISOString().substring(0, 10)
 module.exports = (sequelize, DataTypes) => {
   class PresenceList extends Model {
     /**
@@ -22,30 +23,25 @@ module.exports = (sequelize, DataTypes) => {
           notNull: { msg: "Dropper name can not null" },
         },
       },
-      pickuperName: {
+      pickupperName: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull:false,
         validate: {
-          notEmpty: { msg: "Pickuper name can not be empty" },
-          notNull: { msg: "Pickuper name can not null" },
-        },
+          notEmpty: {msg: 'Pickuper name can not be empty'},
+          notNull: {msg: 'Pickuper name can not null'}
+        }
       },
       pickupTime: DataTypes.TIME,
-      presenceDate: DataTypes.DATEONLY,
-      AppointmentId: DataTypes.INTEGER,
-    },
-    pickupperName: {
-      type: DataTypes.STRING,
-      allowNull:false,
-      validate: {
-        notEmpty: {msg: 'Pickuper name can not be empty'},
-        notNull: {msg: 'Pickuper name can not null'}
-      }
-    },
-    pickupTime: DataTypes.TIME,
-    presenceDate: DataTypes.DATEONLY,
-    AppointmentId: DataTypes.INTEGER
-  }, {
+      presenceDate: {
+        allowNull:false,
+        type: DataTypes.DATEONLY,
+        validate: {
+          notEmpty: {msg: 'presenceDate can not be empty'},
+          notNull: {msg: 'presenceDate can not null'},
+        }
+      },
+      AppointmentId: DataTypes.INTEGER
+    }, {
     sequelize,
     modelName: 'PresenceList',
   });
