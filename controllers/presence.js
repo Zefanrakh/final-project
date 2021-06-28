@@ -3,16 +3,17 @@ const { PresenceList, Appointment } = require('../models')
 class Controller {
     static async postPresence(req, res, next) {
         try {
-            const { dropperName, pickuperName, pickupTime, AppointmentId } = req.body
+            const { dropperName, pickupperName, pickupTime, AppointmentId } = req.body
             const presenceDate = new Date()
-            const insertedData = await PresenceList.create({dropperName, pickuperName, pickupTime, presenceDate, AppointmentId })
+            const insertedData = await PresenceList.create({dropperName, pickupperName, pickupTime, presenceDate, AppointmentId })
             res.status(201).json(insertedData)
         } catch (error) {
+            console.log(error);
             next(error)
         }
     }
 
-    static async getPresence() {
+    static async getPresence(req, res, next) {
         try {
             const presenceList = await PresenceList.findAll({include: {model: Appointment}})
             res.status(200).json(presenceList)

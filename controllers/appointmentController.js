@@ -1,4 +1,4 @@
-const { Appointment, Customer } = require('../models')
+const { Appointment, Customer, Price } = require('../models')
 
 class Controller {
     static async getAppointment(req, res, next){
@@ -12,6 +12,7 @@ class Controller {
             } else {
                 appointments = await Appointment.findAll({ include: {model: Customer} })
             }
+            console.log(appointments);
             res.status(200).json({message: 'read data success', data: appointments})
         } catch (error) {
             next(error);
@@ -20,10 +21,15 @@ class Controller {
 
     static async postAppointment(req, res, next){
         try {
-            const {CustomerId, childName, childAge, startDate, endDate, status, PriceId, quantity, total, note} = req.body 
+            console.log(req.body);
+            const {CustomerId, childName, childAge, startDate, endDate, status, childCategory, packageCategory, quantity, note} = req.body 
+            const price = await Price.findOne({where: {category: childCategory, package: packageCategory}})
+            const total = price.price * quantity
+            const PriceId = price.id
             const insertedData = await Appointment.create({CustomerId, childName, childAge, startDate, endDate, status, PriceId, quantity, total, note})
             res.status(201).json(insertedData)
         } catch (error) {
+            console.log(error);
             next(error);
         }
     }

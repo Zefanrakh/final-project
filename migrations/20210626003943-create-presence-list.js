@@ -11,7 +11,7 @@ module.exports = {
       dropperName: {
         type: Sequelize.STRING
       },
-      pickuperName: {
+      pickupperName: {
         type: Sequelize.STRING
       },
       pickupTime: {

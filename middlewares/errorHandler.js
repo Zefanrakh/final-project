@@ -1,5 +1,4 @@
-const errorHandler = async (err, req, res, next) => {
-  console.log(err);
+const errorHandler = (err, req, res, next) => {
   if (err.status) {
     res.status(err.status).json({ message: err.msg });
   } else if (err.errors) {

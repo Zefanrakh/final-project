@@ -1,6 +1,6 @@
 const { isSame } = require("../helpers/bcrypt");
 const { User, Customer } = require("../models");
-const { generateToken } = require("../helpers/jwt");
+const { sign } = require("../helpers/jwt");
 
 class UserController {
   static register(req, res, next) {
@@ -37,7 +37,7 @@ class UserController {
         });
       })
       .then((user) => {
-        const access_token = generateToken({
+        const access_token = sign({
           username: user.User.username,
           role: user.User.role,
         });
