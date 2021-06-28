@@ -13,6 +13,7 @@ const authentication = async (req, res, next) => {
       });
       if (user) {
         req.user = user;
+        console.log(req.user);
         next();
       } else {
         throw { status: 403, msg: "You must login first" };
