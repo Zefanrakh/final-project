@@ -60,7 +60,7 @@ class UserController {
         if (user) {
           const success = isSame(password, user.password);
           if (success) {
-            const access_token = generateToken({
+            const access_token = sign({
               username: user.username,
               role: user.role,
             });
@@ -80,6 +80,7 @@ class UserController {
         }
       })
       .catch((err) => {
+        console.log(err);
         next(err);
       });
   }

@@ -3,7 +3,7 @@ const router = require("express").Router();
 const appointmentRouter = require("./appointment");
 const presenceRouter = require("./presence");
 const CustomerRouter = require("./customer");
-const UserRouter = require("./userRoute");
+const UserRouter = require("./user");
 const paymentRouter = require('./payment')
 
 router.use("/appointment", appointmentRouter);
