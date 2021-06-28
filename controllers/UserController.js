@@ -44,6 +44,7 @@ class UserController {
         res.status(201).json({ user, access_token });
       })
       .catch((err) => {
+        console.log(err);
         next(err);
       });
   }
@@ -60,7 +61,7 @@ class UserController {
         if (user) {
           const success = isSame(password, user.password);
           if (success) {
-            const access_token = generateToken({
+            const access_token = sign({
               username: user.username,
               role: user.role,
             });
@@ -73,13 +74,14 @@ class UserController {
               },
             });
           } else {
-            throw { status: 404, msg: "Wrong email or password" };
+            throw { status: 404, msg: "Wrong username or password" };
           }
         } else {
-          throw { status: 404, msg: "Wrong email or password" };
+          throw { status: 404, msg: "Wrong username or password" };
         }
       })
       .catch((err) => {
+        console.log(err);
         next(err);
       });
   }
@@ -110,6 +112,7 @@ class UserController {
         res.status(200).json({ user });
       })
       .catch((err) => {
+        console.log(err);
         next(err);
       });
   }
