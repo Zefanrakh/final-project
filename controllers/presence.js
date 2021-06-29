@@ -28,7 +28,7 @@ class Controller {
             if(presenceList){
                 res.status(200).json(presenceList)
             }else{
-                next({status: 404, msg: 'data not found'})
+                next({status: 404, message: 'data not found'})
             }
         } catch (error) {
             next(error)
@@ -41,7 +41,7 @@ class Controller {
             if(presenceList){
                 res.status(200).json(presenceList)
             }else{
-                next({status: 404, msg: 'data not found'})
+                next({status: 404, message: 'data not found'})
             }
         } catch (error) {
             next(error)

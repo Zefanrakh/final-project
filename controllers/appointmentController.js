@@ -35,14 +35,12 @@ class Controller {
         status,
         childCategory,
         packageCategory,
-        quantity,
         note,
       } = req.body;
       const price = await Price.findOne({
         where: { category: childCategory, package: packageCategory },
       });
       const total = price.price * quantity;
-      const PriceId = price.id;
       const insertedData = await Appointment.create({
         CustomerId,
         childName,
@@ -50,14 +48,10 @@ class Controller {
         startDate,
         endDate,
         status,
-        PriceId,
-        quantity,
-        total,
         note,
       });
       res.status(201).json(insertedData);
     } catch (error) {
-      console.log(error);
       next(error);
     }
   }
@@ -72,7 +66,7 @@ class Controller {
       if (appointment) {
         res.status(200).json(appointment);
       } else {
-        next({ status: 404, msg: "data not found" });
+        next({ status: 404, message: "data not found" });
       }
     } catch (error) {
       next(error);
@@ -87,7 +81,7 @@ class Controller {
       if (appointment.length > 0) {
         res.status(200).json(appointment);
       } else {
-        next({ status: 404, msg: "data not found" });
+        next({ status: 404, message: "data not found" });
       }
     } catch (error) {
       next(error);

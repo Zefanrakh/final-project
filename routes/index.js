@@ -4,16 +4,22 @@ const appointmentRouter = require("./appointment");
 const presenceRouter = require("./presence");
 const CustomerRouter = require("./customer");
 const UserRouter = require("./user");
-const paymentRouter = require("./payment");
+const checkoutRouter = require("./checkout");
+const paymentRouter = require('./payment')
 const authentication = require("../middlewares/authentication");
+const { invoiceCallback } = require("../controllers/payment/xendit");
 
 router.use("/user", UserRouter);
+router.post('/callback', invoiceCallback)
 
 router.use(authentication);
 
 router.use("/appointment", appointmentRouter);
 router.use("/presence", presenceRouter);
 router.use("/customers", CustomerRouter);
-router.use("/checkout", paymentRouter);
+router.use("/checkout", checkoutRouter);
+router.use("/paymentDetails", paymentRouter)
+
+
 
 module.exports = router;

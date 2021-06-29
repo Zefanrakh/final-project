@@ -1,5 +1,4 @@
 const errorHandler = (err, req, res, next) => {
-  console.log(err);
   if (err.status) {
     res.status(err.status).json({ message: err.message });
   } else if (err.errors) {
@@ -11,8 +10,6 @@ const errorHandler = (err, req, res, next) => {
     if (!code || code !== "parameter_missing") { msg = `${param}\n${message}` }
     if (code === 'resource_missing') { msg = message.split(':')[0] }
     res.status(statusCode).json({ message: msg });
-  } else if (err.code) {
-    res.status(err.code).json({ message: err.msg });
   } else if (err.response) {
     const { status, data } = err.response
     if (status === 404) {
@@ -22,6 +19,8 @@ const errorHandler = (err, req, res, next) => {
       const message = data.errors[0].messages
       res.status(status).json({ message })
     }
+  } else if (err.name === "JsonWebTokenError") {
+    res.status(403).json({ message: "Invalid signature. You don't have permission to access this page" })
   } else {
     res.status(500).json({ message: "Internal Server Error" });
   }
