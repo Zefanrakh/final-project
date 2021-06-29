@@ -6,7 +6,7 @@ const {
   customerAppointmentAuthorization,
 } = require("../middlewares/authorization");
 
-router.get("/", adminAuthorization, Controller.getAppointment);
+router.get("/", Controller.getAppointment);
 router.post("/", Controller.postAppointment);
 router.get("/:id", Controller.getAppointmentById);
 router.patch(
