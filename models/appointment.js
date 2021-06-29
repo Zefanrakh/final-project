@@ -72,7 +72,7 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       note: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false,
         validate: {
           notEmpty: { msg: "note can not be empty" },
