@@ -1,12 +1,8 @@
-const { stripeCheckout, successCheckout } = require('../controllers/payment/stripe')
-const { createVirtualAccount, payVirtualAccount, createInvoice } = require('../controllers/payment/xendit')
-
+const { createPaymentDetail, getPaymentDetails, getPaymentDetailsByAppointment } = require('../controllers/payment/paymentDetails')
 const router = require('express').Router()
 
-router.post('/stripe', stripeCheckout)
-router.get('/success/:id', successCheckout)
-router.post('/virtual-account', createVirtualAccount)
-router.post('/virtual-account/pay', payVirtualAccount)
-router.post('/invoice', createInvoice)
+router.post('/', createPaymentDetail)
+router.get('/', getPaymentDetails)
+router.get('/:id', getPaymentDetailsByAppointment)
 
 module.exports = router

@@ -1,5 +1,6 @@
 const { verify } = require("../helpers/jwt");
 const { User } = require("../models");
+const callbackToken = process.env.CALLBACK_TOKEN
 
 const authentication = async (req, res, next) => {
   try {
@@ -13,17 +14,29 @@ const authentication = async (req, res, next) => {
       });
       if (user) {
         req.user = user;
-        console.log(req.user);
         next();
       } else {
-        throw { status: 403, msg: "You must login first" };
+        next({ status: 403, message: "You must login first" })
       }
     } else {
-      throw { status: 403, msg: "You must login first" };
+      next({ status: 403, message: "You must login first" });
     }
   } catch (err) {
     next(err);
   }
 };
 
-module.exports = authentication;
+// const callbackTokenAuth = async (req, res, next) => {
+//   const headers = req.headers
+//   try {
+//     !headers && next({ status: 401, message: 'Unauthorized Access' })
+//     const token = Object.values(headers)[3]
+//     const matchedToken = callbackToken === token
+//     !matchedToken && next({ status: 403, message: "Invalid signature. You don't have permission to access this page" })
+//     next()
+//   } catch (error) {
+//     next(error)
+//   }
+// }
+
+module.exports = authentication

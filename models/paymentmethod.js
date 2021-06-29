@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      PaymentMethod.belongsTo(models.PaymentDetail)
     }
   };
   PaymentMethod.init({
@@ -20,4 +20,4 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'PaymentMethod',
   });
   return PaymentMethod;
-};
+};  

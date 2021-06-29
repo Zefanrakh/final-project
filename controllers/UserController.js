@@ -48,7 +48,6 @@ class UserController {
         res.status(201).json({ user, access_token });
       })
       .catch((err) => {
-        console.log(err);
         next(err);
       });
   }
@@ -78,14 +77,13 @@ class UserController {
               },
             });
           } else {
-            throw { status: 404, msg: "Wrong username or password" };
+            next({ status: 404, message: "Wrong username or password" });
           }
         } else {
-          throw { status: 404, msg: "Wrong username or password" };
+          next({ status: 404, message: "Wrong username or password" });
         }
       })
       .catch((err) => {
-        console.log(err);
         next(err);
       });
   }
@@ -116,7 +114,6 @@ class UserController {
         res.status(200).json({ user });
       })
       .catch((err) => {
-        console.log(err);
         next(err);
       });
   }
