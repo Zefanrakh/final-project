@@ -10,7 +10,7 @@ const authentication = require("../middlewares/authentication");
 
 router.use("/user", UserRouter);
 
-router.use(authentication);
+router.use("/", authentication);
 
 router.use("/search", searchRouter);
 router.use("/appointment", appointmentRouter);
