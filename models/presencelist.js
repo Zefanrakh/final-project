@@ -32,6 +32,7 @@ module.exports = (sequelize, DataTypes) => {
         }
       },
       pickupTime: DataTypes.TIME,
+
       presenceDate: {
         allowNull:false,
         type: DataTypes.DATEONLY,

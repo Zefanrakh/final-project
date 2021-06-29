@@ -1,8 +1,11 @@
 const xenditInstance = require("../../helpers/xendit")
 const axios = require('axios')
-const { VirtualAcc } = xenditInstance
+const { VirtualAcc, Invoice } = xenditInstance
 const vaSpecificOptions = {}
 const va = new VirtualAcc(vaSpecificOptions)
+
+const invoiceSpecificOptions = {};
+const inv = new Invoice(invoiceSpecificOptions);
 
 module.exports = class Controller {
 
@@ -30,6 +33,17 @@ module.exports = class Controller {
         headers: { Authorization }
       })
       res.status(200).json(response.data)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  static async createInvoice(req, res, next) {
+    const { externalID, payerEmail, amount, description } = req.body
+    const input = { externalID, payerEmail, amount, description }
+    try {
+      const response = await inv.createInvoice( input )
+      res.status(200).json(response)
     } catch (error) {
       next(error)
     }

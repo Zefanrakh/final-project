@@ -86,7 +86,7 @@ describe('Read Appointment | Success Case', ()=>{
     it('should send an object with array', done => {
         request(app)
             .get('/appointment')
-            //.set('access_token', adminToken)
+            .set('access_token', adminToken)
             .end((err, res)=>{
                 if(err) return done(err)
                 expect(res.status).toBe(200)
@@ -102,7 +102,7 @@ describe('Create Appointment | Success Case', ()=>{
         request(app)
             .post('/appointment')
             .send(tempData)
-            //.set('access_token', adminToken)
+            .set('access_token', adminToken)
             .end((err, res)=>{
                 if(err) return done(err)
                 expect(res.status).toBe(201)
@@ -118,6 +118,7 @@ describe('Create Appointment | childName not send to server', ()=>{
     it('should send a message inside array Child name can not null ', done => {
         request(app)
             .post('/appointment')
+            .set('access_token', adminToken)
             .send({
                 CustomerId: CustomerId,
                 //childName: "Roni Disco", 

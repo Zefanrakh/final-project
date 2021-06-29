@@ -1,4 +1,4 @@
-const { Appointment, Customer, Price } = require('../models')
+const { Appointment, Customer, Price } = require("../models");
 
 class Controller {
     static async getAppointment(req, res, next){
@@ -63,7 +63,14 @@ class Controller {
         } catch (error) {
             next(error);
         }
+      if (updatedData) {
+        res.status(200).json(updatedData);
+      } else {
+        res.status(400).json({ message: "Data not found" });
+      }
+    } catch (error) {
+      next(error);
     }
 }
 
-module.exports = Controller
+module.exports = Controller;

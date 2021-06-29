@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+
   "scripts": {
     "test": "jest --detectOpenHandles --forceExit --runInBand --collectCoverage",
     "dev": "nodemon bin/http",
@@ -36,6 +37,7 @@
   "devDependencies": {
     "dotenv": "^10.0.0",
     "jest": "^27.0.5",
+    "sequelize-cli": "^6.2.0",
     "supertest": "^6.1.3"
   },
   "directories": {

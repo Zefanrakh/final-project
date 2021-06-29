@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">15.38% </span>
+                <span class="strong">18.52% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>2/13</span>
+                <span class='fraction'>5/27</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">5.56% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/8</span>
+                <span class='fraction'>1/18</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>1/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">16.67% </span>
+                <span class="strong">20.83% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>2/12</span>
+                <span class='fraction'>5/24</span>
             </div>
         
             
@@ -73,7 +73,31 @@
 <a name='L14'></a><a href='#L14'>14</a>
 <a name='L15'></a><a href='#L15'>15</a>
 <a name='L16'></a><a href='#L16'>16</a>
-<a name='L17'></a><a href='#L17'>17</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L17'></a><a href='#L17'>17</a>
+<a name='L18'></a><a href='#L18'>18</a>
+<a name='L19'></a><a href='#L19'>19</a>
+<a name='L20'></a><a href='#L20'>20</a>
+<a name='L21'></a><a href='#L21'>21</a>
+<a name='L22'></a><a href='#L22'>22</a>
+<a name='L23'></a><a href='#L23'>23</a>
+<a name='L24'></a><a href='#L24'>24</a>
+<a name='L25'></a><a href='#L25'>25</a>
+<a name='L26'></a><a href='#L26'>26</a>
+<a name='L27'></a><a href='#L27'>27</a>
+<a name='L28'></a><a href='#L28'>28</a>
+<a name='L29'></a><a href='#L29'>29</a>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">34x</span>
+<span class="cline-any cline-yes">34x</span>
+<span class="cline-any cline-yes">34x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -85,20 +109,38 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const errorHandler = <span class="fstat-no" title="function not covered" >(e</span>rr, req, res, next) =&gt; {
-<span class="cstat-no" title="statement not covered" >  if (err.status) {</span>
-<span class="cstat-no" title="statement not covered" >    res.status(err.status).json({ message: err.msg });</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const errorHandler = (err, req, res, next) =&gt; {
+  console.log(err);
+  <span class="missing-if-branch" title="else path not taken" >E</span>if (err.status) {
+    res.status(err.status).json({ message: err.message });
   } else <span class="cstat-no" title="statement not covered" >if (err.errors) {</span>
     let message = <span class="cstat-no" title="statement not covered" >err.errors.map(<span class="fstat-no" title="function not covered" >(e</span>l) =&gt; <span class="cstat-no" title="statement not covered" >el.message)</span>;</span>
 <span class="cstat-no" title="statement not covered" >    res.status(400).json({ message });</span>
   } else <span class="cstat-no" title="statement not covered" >if (err.raw) {</span>
-<span class="cstat-no" title="statement not covered" >    res.json({ message: err.raw.message });</span>
+    const { statusCode, message, param, code } = <span class="cstat-no" title="statement not covered" >err.raw</span>
+    let msg = <span class="cstat-no" title="statement not covered" >message</span>
+<span class="cstat-no" title="statement not covered" >    if (!code || code !== "parameter_missing") { <span class="cstat-no" title="statement not covered" >msg = `${param}\n${message}` </span>}</span>
+<span class="cstat-no" title="statement not covered" >    if (code === 'resource_missing') { <span class="cstat-no" title="statement not covered" >msg = message.split(':')[0] </span>}</span>
+<span class="cstat-no" title="statement not covered" >    res.status(statusCode).json({ message: msg });</span>
   } else <span class="cstat-no" title="statement not covered" >if (err.code) {</span>
 <span class="cstat-no" title="statement not covered" >    res.status(err.code).json({ message: err.msg });</span>
+  } else <span class="cstat-no" title="statement not covered" >if (err.response) {</span>
+    const { status, data } = <span class="cstat-no" title="statement not covered" >err.response</span>
+<span class="cstat-no" title="statement not covered" >    if (status === 404) {</span>
+      const message = <span class="cstat-no" title="statement not covered" >"Not Found"</span>
+<span class="cstat-no" title="statement not covered" >      res.status(status).json({ message })</span>
+    } else {
+      const message = <span class="cstat-no" title="statement not covered" >data.errors[0].messages</span>
+<span class="cstat-no" title="statement not covered" >      res.status(status).json({ message })</span>
+    }
   } else {
 <span class="cstat-no" title="statement not covered" >    res.status(500).json({ message: "Internal Server Error" });</span>
   }
@@ -112,7 +154,7 @@ module.exports = errorHandler;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Tue Jun 29 2021 07:56:24 GMT+0700 (Western Indonesia Time)
+                at Tue Jun 29 2021 09:13:05 GMT+0700 (Western Indonesia Time)
             </div>
         </div>
         <script src="../../prettify.js"></script>
