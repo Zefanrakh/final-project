@@ -138,14 +138,14 @@ describe('Create Presence | dropperName not filed', ()=>{
 })
 
 describe('Create presence | input presenceDate date before', ()=>{
-    it('should send a message inside array presenceDate must be equal or greater than today', done => {
+    it.only('should send a message inside array presenceDate must be equal or greater than today', done => {
         request(app)
             .post('/presence')
             .send({
                 dropperName: "dadang suhardi",
                 pickupperName: "dadang suhardi",
                 pickupTime: "17:00",
-                presenceDate: "2021-06-01",
+                presenceDate: "2020-06-01",
                 AppointmentId: appointmentId
             })
             //.set('access_token', adminToken)
