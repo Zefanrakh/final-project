@@ -12,43 +12,53 @@ module.exports = (sequelize, DataTypes) => {
       Customer.belongsTo(models.User);
       Customer.hasMany(models.Appointment);
     }
-
-  };
-  Customer.init({
-    name: {type:DataTypes.STRING,
-    validate:{
-      notEmpty:{
-        msg:"Name Cannot Be Empty"
-      }
-    }},
-    address: {type:DataTypes.STRING,
-    validate:{
-      notEmpty:{
-        msg:"Address Cannot Be Empty"
-      }
-    }},
-    email: {type:DataTypes.STRING,
-    validate:{
-      isEmail:{
-        args:true,
-        msg:"Invalid E-Mail Format"
+  }
+  Customer.init(
+    {
+      name: {
+        type: DataTypes.STRING,
+        validate: {
+          notEmpty: {
+            msg: "Name Cannot Be Empty",
+          },
+        },
       },
-      notEmpty:{
-        msg:"E-mail Cannot be Empty"
+      address: {
+        type: DataTypes.STRING,
+        validate: {
+          notEmpty: {
+            msg: "Address Cannot Be Empty",
+          },
+        },
       },
-    },unique:true},
-    phoneNumber: {type:DataTypes.STRING,
-      validate:{
-        isNumeric:{
-          msg:"input Phone Number with Number"
-        }
-      }
+      email: {
+        type: DataTypes.STRING,
+        validate: {
+          isEmail: {
+            args: true,
+            msg: "Invalid E-Mail Format",
+          },
+          notEmpty: {
+            msg: "E-mail Cannot be Empty",
+          },
+        },
+        unique: true,
+      },
+      phoneNumber: {
+        type: DataTypes.STRING,
+        validate: {
+          isNumeric: {
+            msg: "input Phone Number with Number",
+          },
+        },
+      },
+      UserId: DataTypes.INTEGER,
     },
-    UserId: DataTypes.INTEGER
-  }, {
-    sequelize,
-    modelName: 'Customer',
-  });
+    {
+      sequelize,
+      modelName: "Customer",
+    }
+  );
 
   return Customer;
 };
