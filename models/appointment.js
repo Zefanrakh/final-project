@@ -10,10 +10,10 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Appointment.belongsTo(models.Customer),
+      Appointment.belongsTo(models.Customer)
+      Appointment.hasMany(models.PresenceList)
+      Appointment.hasOne(models.PaymentDetail)
 
-        Appointment.hasMany(models.PresenceList),
-        Appointment.belongsTo(models.Price);
     }
   }
   Appointment.init(
@@ -71,9 +71,6 @@ module.exports = (sequelize, DataTypes) => {
           msg: "status must be sudah bayar or belum bayar or cancel",
         },
       },
-      PriceId: DataTypes.INTEGER,
-      quantity: DataTypes.INTEGER,
-      total: DataTypes.INTEGER,
       note: {
         type: DataTypes.INTEGER,
         allowNull: false,
