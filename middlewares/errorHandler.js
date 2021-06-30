@@ -12,13 +12,16 @@ const errorHandler = (err, req, res, next) => {
     res.status(statusCode).json({ message: msg });
   } else if (err.response) {
     const { status, data } = err.response
+    let message
     if (status === 404) {
-      const message = "Not Found"
-      res.status(status).json({ message })
+      message = "Not Found"
+    } else if (status === 401) {
+      message = data.message
     } else {
-      const message = data.errors[0].messages
-      res.status(status).json({ message })
+      message = data.errors[0].messages
     }
+    res.status(status).json({ message })
+
   } else if (err.name === "JsonWebTokenError") {
     res.status(403).json({ message: "Invalid signature. You don't have permission to access this page" })
   } else {

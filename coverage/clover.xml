@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1625072006919" clover="3.2.0">
-  <project timestamp="1625072006920" name="All files">
-    <metrics statements="481" coveredstatements="420" conditionals="91" coveredconditionals="70" methods="72" coveredmethods="59" elements="644" coveredelements="549" complexity="0" loc="481" ncloc="481" packages="7" files="35" classes="35"/>
+<coverage generated="1625079314470" clover="3.2.0">
+  <project timestamp="1625079314471" name="All files">
+    <metrics statements="481" coveredstatements="449" conditionals="91" coveredconditionals="76" methods="72" coveredmethods="64" elements="644" coveredelements="589" complexity="0" loc="481" ncloc="481" packages="7" files="35" classes="35"/>
     <package name="final-project">
       <metrics statements="13" coveredstatements="13" conditionals="2" coveredconditionals="2" methods="0" coveredmethods="0"/>
       <file name="app.js" path="/home/dude/hacktive8/phase3/DAYCARE/final-project/app.js">
         <metrics statements="13" coveredstatements="13" conditionals="2" coveredconditionals="2" methods="0" coveredmethods="0"/>
-        <line num="1" count="6" type="stmt"/>
-        <line num="2" count="6" type="stmt"/>
-        <line num="3" count="6" type="stmt"/>
-        <line num="4" count="6" type="cond" truecount="2" falsecount="0"/>
-        <line num="5" count="6" type="stmt"/>
-        <line num="6" count="6" type="stmt"/>
-        <line num="7" count="6" type="stmt"/>
-        <line num="9" count="6" type="stmt"/>
-        <line num="10" count="6" type="stmt"/>
-        <line num="11" count="6" type="stmt"/>
-        <line num="12" count="6" type="stmt"/>
-        <line num="13" count="6" type="stmt"/>
-        <line num="15" count="6" type="stmt"/>
+        <line num="1" count="7" type="stmt"/>
+        <line num="2" count="7" type="stmt"/>
+        <line num="3" count="7" type="stmt"/>
+        <line num="4" count="7" type="cond" truecount="2" falsecount="0"/>
+        <line num="5" count="7" type="stmt"/>
+        <line num="6" count="7" type="stmt"/>
+        <line num="7" count="7" type="stmt"/>
+        <line num="9" count="7" type="stmt"/>
+        <line num="10" count="7" type="stmt"/>
+        <line num="11" count="7" type="stmt"/>
+        <line num="12" count="7" type="stmt"/>
+        <line num="13" count="7" type="stmt"/>
+        <line num="15" count="7" type="stmt"/>
       </file>
     </package>
     <package name="final-project.controllers">
-      <metrics statements="148" coveredstatements="126" conditionals="38" coveredconditionals="33" methods="31" coveredmethods="24"/>
+      <metrics statements="146" coveredstatements="133" conditionals="38" coveredconditionals="35" methods="31" coveredmethods="26"/>
       <file name="UserController.js" path="/home/dude/hacktive8/phase3/DAYCARE/final-project/controllers/UserController.js">
         <metrics statements="36" coveredstatements="30" conditionals="4" coveredconditionals="4" methods="17" coveredmethods="12"/>
-        <line num="1" count="6" type="stmt"/>
-        <line num="2" count="6" type="stmt"/>
-        <line num="3" count="6" type="stmt"/>
+        <line num="1" count="7" type="stmt"/>
+        <line num="2" count="7" type="stmt"/>
+        <line num="3" count="7" type="stmt"/>
         <line num="16" count="1" type="stmt"/>
         <line num="18" count="1" type="stmt"/>
         <line num="25" count="1" type="stmt"/>
@@ -60,12 +60,12 @@
         <line num="129" count="2" type="stmt"/>
         <line num="135" count="2" type="stmt"/>
         <line num="138" count="0" type="stmt"/>
-        <line num="143" count="6" type="stmt"/>
+        <line num="143" count="7" type="stmt"/>
       </file>
       <file name="appointmentController.js" path="/home/dude/hacktive8/phase3/DAYCARE/final-project/controllers/appointmentController.js">
         <metrics statements="41" coveredstatements="38" conditionals="16" coveredconditionals="15" methods="4" coveredmethods="4"/>
-        <line num="1" count="6" type="stmt"/>
-        <line num="2" count="6" type="stmt"/>
+        <line num="1" count="7" type="stmt"/>
+        <line num="2" count="7" type="stmt"/>
         <line num="6" count="1" type="stmt"/>
         <line num="7" count="1" type="stmt"/>
         <line num="8" count="1" type="stmt"/>
@@ -104,11 +104,11 @@
         <line num="80" count="1" type="stmt"/>
         <line num="82" count="1" type="stmt"/>
         <line num="85" count="1" type="stmt"/>
-        <line num="90" count="6" type="stmt"/>
+        <line num="90" count="7" type="stmt"/>
       </file>
       <file name="customerController.js" path="/home/dude/hacktive8/phase3/DAYCARE/final-project/controllers/customerController.js">
         <metrics statements="17" coveredstatements="16" conditionals="2" coveredconditionals="2" methods="5" coveredmethods="5"/>
-        <line num="1" count="6" type="stmt"/>
+        <line num="1" count="7" type="stmt"/>
         <line num="5" count="1" type="stmt"/>
         <line num="6" count="1" type="stmt"/>
         <line num="7" count="1" type="stmt"/>
@@ -124,12 +124,12 @@
         <line num="34" count="1" type="stmt"/>
         <line num="36" count="1" type="stmt"/>
         <line num="39" count="1" type="stmt"/>
-        <line num="46" count="6" type="stmt"/>
+        <line num="46" count="7" type="stmt"/>
       </file>
       <file name="keywordController.js" path="/home/dude/hacktive8/phase3/DAYCARE/final-project/controllers/keywordController.js">
-        <metrics statements="18" coveredstatements="18" conditionals="8" coveredconditionals="8" methods="1" coveredmethods="1"/>
-        <line num="1" count="6" type="stmt"/>
-        <line num="2" count="6" type="stmt"/>
+        <metrics statements="17" coveredstatements="17" conditionals="8" coveredconditionals="8" methods="1" coveredmethods="1"/>
+        <line num="1" count="7" type="stmt"/>
+        <line num="2" count="7" type="stmt"/>
         <line num="6" count="4" type="stmt"/>
         <line num="7" count="4" type="stmt"/>
         <line num="8" count="4" type="stmt"/>
@@ -144,14 +144,13 @@
         <line num="47" count="1" type="stmt"/>
         <line num="49" count="3" type="stmt"/>
         <line num="51" count="1" type="stmt"/>
-        <line num="52" count="1" type="stmt"/>
-        <line num="57" count="6" type="stmt"/>
+        <line num="56" count="7" type="stmt"/>
       </file>
       <file name="presence.js" path="/home/dude/hacktive8/phase3/DAYCARE/final-project/controllers/presence.js">
-        <metrics statements="23" coveredstatements="22" conditionals="4" coveredconditionals="4" methods="2" coveredmethods="2"/>
-        <line num="1" count="6" type="stmt"/>
-        <line num="2" count="6" type="stmt"/>
-        <line num="3" count="6" type="stmt"/>
+        <metrics statements="22" coveredstatements="21" conditionals="4" coveredconditionals="4" methods="2" coveredmethods="2"/>
+        <line num="1" count="7" type="stmt"/>
+        <line num="2" count="7" type="stmt"/>
+        <line num="3" count="7" type="stmt"/>
         <line num="7" count="5" type="stmt"/>
         <line num="8" count="5" type="stmt"/>
         <line num="9" count="5" type="stmt"/>
@@ -166,61 +165,58 @@
         <line num="20" count="1" type="stmt"/>
         <line num="21" count="1" type="stmt"/>
         <line num="24" count="4" type="stmt"/>
-        <line num="25" count="4" type="stmt"/>
+        <line num="29" count="1" type="stmt"/>
         <line num="30" count="1" type="stmt"/>
         <line num="31" count="1" type="stmt"/>
-        <line num="32" count="1" type="stmt"/>
-        <line num="34" count="0" type="stmt"/>
-        <line num="40" count="6" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="39" count="7" type="stmt"/>
       </file>
       <file name="priceController.js" path="/home/dude/hacktive8/phase3/DAYCARE/final-project/controllers/priceController.js">
-        <metrics statements="13" coveredstatements="2" conditionals="4" coveredconditionals="0" methods="2" coveredmethods="0"/>
-        <line num="1" count="6" type="stmt"/>
-        <line num="3" count="6" type="stmt"/>
-        <line num="5" count="0" type="stmt"/>
-        <line num="6" count="0" type="stmt"/>
-        <line num="7" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="8" count="0" type="stmt"/>
+        <metrics statements="13" coveredstatements="11" conditionals="4" coveredconditionals="2" methods="2" coveredmethods="2"/>
+        <line num="1" count="7" type="stmt"/>
+        <line num="3" count="7" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="8" count="1" type="stmt"/>
         <line num="10" count="0" type="stmt"/>
-        <line num="15" count="0" type="stmt"/>
-        <line num="16" count="0" type="stmt"/>
-        <line num="17" count="0" type="stmt"/>
-        <line num="18" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="19" count="0" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="18" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="19" count="1" type="stmt"/>
         <line num="21" count="0" type="stmt"/>
       </file>
     </package>
     <package name="final-project.controllers.payment">
-      <metrics statements="94" coveredstatements="61" conditionals="12" coveredconditionals="3" methods="12" coveredmethods="7"/>
+      <metrics statements="95" coveredstatements="82" conditionals="10" coveredconditionals="5" methods="12" coveredmethods="10"/>
       <file name="paymentDetails.js" path="/home/dude/hacktive8/phase3/DAYCARE/final-project/controllers/payment/paymentDetails.js">
-        <metrics statements="22" coveredstatements="2" conditionals="8" coveredconditionals="0" methods="3" coveredmethods="0"/>
-        <line num="1" count="6" type="stmt"/>
-        <line num="3" count="6" type="stmt"/>
-        <line num="6" count="0" type="stmt"/>
-        <line num="7" count="0" type="stmt"/>
-        <line num="8" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="9" count="0" type="stmt"/>
-        <line num="10" count="0" type="stmt"/>
-        <line num="11" count="0" type="stmt"/>
-        <line num="12" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="13" count="0" type="stmt"/>
-        <line num="15" count="0" type="stmt"/>
+        <metrics statements="20" coveredstatements="14" conditionals="4" coveredconditionals="2" methods="3" coveredmethods="2"/>
+        <line num="1" count="7" type="stmt"/>
+        <line num="2" count="7" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="11" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
         <line num="20" count="0" type="stmt"/>
         <line num="21" count="0" type="stmt"/>
-        <line num="22" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="23" count="0" type="stmt"/>
-        <line num="25" count="0" type="stmt"/>
-        <line num="30" count="0" type="stmt"/>
-        <line num="31" count="0" type="stmt"/>
-        <line num="32" count="0" type="stmt"/>
-        <line num="33" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="34" count="0" type="stmt"/>
-        <line num="36" count="0" type="stmt"/>
+        <line num="28" count="1" type="stmt"/>
+        <line num="29" count="1" type="stmt"/>
+        <line num="30" count="1" type="stmt"/>
+        <line num="31" count="1" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
       </file>
       <file name="stripe.js" path="/home/dude/hacktive8/phase3/DAYCARE/final-project/controllers/payment/stripe.js">
         <metrics statements="18" coveredstatements="18" conditionals="2" coveredconditionals="2" methods="4" coveredmethods="4"/>
-        <line num="1" count="6" type="stmt"/>
-        <line num="3" count="6" type="stmt"/>
+        <line num="1" count="7" type="stmt"/>
+        <line num="3" count="7" type="stmt"/>
         <line num="5" count="6" type="stmt"/>
         <line num="6" count="6" type="stmt"/>
         <line num="7" count="6" type="stmt"/>
@@ -239,26 +235,26 @@
         <line num="36" count="1" type="stmt"/>
       </file>
       <file name="xendit.js" path="/home/dude/hacktive8/phase3/DAYCARE/final-project/controllers/payment/xendit.js">
-        <metrics statements="54" coveredstatements="41" conditionals="2" coveredconditionals="1" methods="5" coveredmethods="3"/>
-        <line num="1" count="6" type="stmt"/>
-        <line num="2" count="6" type="stmt"/>
-        <line num="3" count="6" type="stmt"/>
-        <line num="4" count="6" type="stmt"/>
-        <line num="6" count="6" type="stmt"/>
-        <line num="7" count="6" type="stmt"/>
-        <line num="8" count="6" type="stmt"/>
-        <line num="9" count="6" type="stmt"/>
-        <line num="11" count="6" type="stmt"/>
-        <line num="12" count="6" type="stmt"/>
-        <line num="14" count="6" type="stmt"/>
-        <line num="15" count="6" type="stmt"/>
-        <line num="16" count="6" type="stmt"/>
-        <line num="18" count="5" type="stmt"/>
-        <line num="19" count="5" type="stmt"/>
-        <line num="20" count="5" type="stmt"/>
-        <line num="21" count="5" type="stmt"/>
-        <line num="22" count="5" type="stmt"/>
-        <line num="23" count="2" type="stmt"/>
+        <metrics statements="57" coveredstatements="50" conditionals="4" coveredconditionals="1" methods="5" coveredmethods="4"/>
+        <line num="1" count="7" type="stmt"/>
+        <line num="2" count="7" type="stmt"/>
+        <line num="3" count="7" type="stmt"/>
+        <line num="4" count="7" type="stmt"/>
+        <line num="6" count="7" type="stmt"/>
+        <line num="7" count="7" type="stmt"/>
+        <line num="8" count="7" type="stmt"/>
+        <line num="9" count="7" type="stmt"/>
+        <line num="11" count="7" type="stmt"/>
+        <line num="12" count="7" type="stmt"/>
+        <line num="14" count="7" type="stmt"/>
+        <line num="15" count="7" type="stmt"/>
+        <line num="16" count="7" type="stmt"/>
+        <line num="18" count="4" type="stmt"/>
+        <line num="19" count="4" type="stmt"/>
+        <line num="20" count="4" type="stmt"/>
+        <line num="21" count="4" type="stmt"/>
+        <line num="22" count="4" type="stmt"/>
+        <line num="23" count="1" type="stmt"/>
         <line num="25" count="3" type="stmt"/>
         <line num="30" count="3" type="stmt"/>
         <line num="31" count="3" type="stmt"/>
@@ -284,329 +280,333 @@
         <line num="70" count="1" type="stmt"/>
         <line num="71" count="1" type="stmt"/>
         <line num="73" count="1" type="stmt"/>
-        <line num="78" count="0" type="stmt"/>
-        <line num="79" count="0" type="stmt"/>
-        <line num="81" count="0" type="stmt"/>
-        <line num="82" count="0" type="stmt"/>
-        <line num="83" count="0" type="stmt"/>
-        <line num="84" count="0" type="stmt"/>
-        <line num="85" count="0" type="stmt"/>
-        <line num="86" count="0" type="stmt"/>
+        <line num="74" count="1" type="stmt"/>
+        <line num="79" count="1" type="stmt"/>
+        <line num="80" count="1" type="stmt"/>
+        <line num="82" count="1" type="stmt"/>
+        <line num="83" count="1" type="stmt"/>
+        <line num="84" count="1" type="stmt"/>
+        <line num="85" count="1" type="stmt"/>
+        <line num="86" count="1" type="stmt"/>
+        <line num="87" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="88" count="0" type="stmt"/>
-        <line num="89" count="0" type="stmt"/>
+        <line num="90" count="0" type="stmt"/>
+        <line num="91" count="0" type="stmt"/>
+        <line num="93" count="1" type="stmt"/>
       </file>
     </package>
     <package name="final-project.helpers">
       <metrics statements="23" coveredstatements="20" conditionals="2" coveredconditionals="0" methods="4" coveredmethods="3"/>
       <file name="bcrypt.js" path="/home/dude/hacktive8/phase3/DAYCARE/final-project/helpers/bcrypt.js">
         <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
-        <line num="1" count="6" type="stmt"/>
-        <line num="3" count="6" type="stmt"/>
-        <line num="4" count="11" type="stmt"/>
-        <line num="5" count="11" type="stmt"/>
-        <line num="8" count="6" type="stmt"/>
+        <line num="1" count="7" type="stmt"/>
+        <line num="3" count="7" type="stmt"/>
+        <line num="4" count="12" type="stmt"/>
+        <line num="5" count="12" type="stmt"/>
+        <line num="8" count="7" type="stmt"/>
         <line num="9" count="2" type="stmt"/>
-        <line num="12" count="6" type="stmt"/>
+        <line num="12" count="7" type="stmt"/>
       </file>
       <file name="nodemailer.js" path="/home/dude/hacktive8/phase3/DAYCARE/final-project/helpers/nodemailer.js">
         <metrics statements="9" coveredstatements="6" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="1"/>
-        <line num="1" count="6" type="stmt"/>
-        <line num="3" count="6" type="stmt"/>
-        <line num="13" count="6" type="stmt"/>
+        <line num="1" count="7" type="stmt"/>
+        <line num="3" count="7" type="stmt"/>
+        <line num="13" count="7" type="stmt"/>
         <line num="14" count="1" type="stmt"/>
         <line num="25" count="1" type="stmt"/>
         <line num="26" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="27" count="0" type="stmt"/>
         <line num="29" count="0" type="stmt"/>
-        <line num="34" count="6" type="stmt"/>
+        <line num="34" count="7" type="stmt"/>
       </file>
       <file name="stripe.js" path="/home/dude/hacktive8/phase3/DAYCARE/final-project/helpers/stripe.js">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="6" type="stmt"/>
-        <line num="2" count="6" type="stmt"/>
-        <line num="4" count="6" type="stmt"/>
+        <line num="1" count="7" type="stmt"/>
+        <line num="2" count="7" type="stmt"/>
+        <line num="4" count="7" type="stmt"/>
       </file>
       <file name="xendit.js" path="/home/dude/hacktive8/phase3/DAYCARE/final-project/helpers/xendit.js">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="6" type="stmt"/>
-        <line num="3" count="6" type="stmt"/>
-        <line num="4" count="6" type="stmt"/>
-        <line num="8" count="6" type="stmt"/>
+        <line num="1" count="7" type="stmt"/>
+        <line num="3" count="7" type="stmt"/>
+        <line num="4" count="7" type="stmt"/>
+        <line num="8" count="7" type="stmt"/>
       </file>
     </package>
     <package name="final-project.middlewares">
-      <metrics statements="53" coveredstatements="51" conditionals="28" coveredconditionals="26" methods="5" coveredmethods="5"/>
+      <metrics statements="54" coveredstatements="52" conditionals="30" coveredconditionals="28" methods="5" coveredmethods="5"/>
       <file name="authentication.js" path="/home/dude/hacktive8/phase3/DAYCARE/final-project/middlewares/authentication.js">
         <metrics statements="16" coveredstatements="15" conditionals="4" coveredconditionals="3" methods="1" coveredmethods="1"/>
-        <line num="1" count="6" type="stmt"/>
-        <line num="2" count="6" type="stmt"/>
-        <line num="3" count="6" type="stmt"/>
-        <line num="5" count="6" type="stmt"/>
-        <line num="6" count="64" type="stmt"/>
-        <line num="7" count="64" type="stmt"/>
-        <line num="8" count="64" type="cond" truecount="2" falsecount="0"/>
-        <line num="9" count="57" type="stmt"/>
-        <line num="10" count="54" type="stmt"/>
-        <line num="15" count="54" type="cond" truecount="1" falsecount="1"/>
-        <line num="16" count="54" type="stmt"/>
-        <line num="17" count="54" type="stmt"/>
+        <line num="1" count="7" type="stmt"/>
+        <line num="2" count="7" type="stmt"/>
+        <line num="3" count="7" type="stmt"/>
+        <line num="5" count="7" type="stmt"/>
+        <line num="6" count="74" type="stmt"/>
+        <line num="7" count="74" type="stmt"/>
+        <line num="8" count="74" type="cond" truecount="2" falsecount="0"/>
+        <line num="9" count="64" type="stmt"/>
+        <line num="10" count="57" type="stmt"/>
+        <line num="15" count="57" type="cond" truecount="1" falsecount="1"/>
+        <line num="16" count="57" type="stmt"/>
+        <line num="17" count="57" type="stmt"/>
         <line num="19" count="0" type="stmt"/>
-        <line num="22" count="7" type="stmt"/>
-        <line num="25" count="3" type="stmt"/>
-        <line num="42" count="6" type="stmt"/>
+        <line num="22" count="10" type="stmt"/>
+        <line num="25" count="7" type="stmt"/>
+        <line num="42" count="7" type="stmt"/>
       </file>
       <file name="authorization.js" path="/home/dude/hacktive8/phase3/DAYCARE/final-project/middlewares/authorization.js">
         <metrics statements="14" coveredstatements="14" conditionals="6" coveredconditionals="6" methods="2" coveredmethods="2"/>
-        <line num="1" count="6" type="stmt"/>
-        <line num="3" count="6" type="stmt"/>
+        <line num="1" count="7" type="stmt"/>
+        <line num="3" count="7" type="stmt"/>
         <line num="4" count="16" type="stmt"/>
         <line num="5" count="16" type="cond" truecount="2" falsecount="0"/>
         <line num="6" count="1" type="stmt"/>
         <line num="8" count="1" type="stmt"/>
-        <line num="12" count="6" type="stmt"/>
+        <line num="12" count="7" type="stmt"/>
         <line num="13" count="2" type="stmt"/>
         <line num="14" count="2" type="stmt"/>
         <line num="19" count="2" type="cond" truecount="2" falsecount="0"/>
         <line num="20" count="2" type="cond" truecount="2" falsecount="0"/>
         <line num="21" count="1" type="stmt"/>
         <line num="23" count="1" type="stmt"/>
-        <line num="27" count="6" type="stmt"/>
+        <line num="27" count="7" type="stmt"/>
       </file>
       <file name="errorHandler.js" path="/home/dude/hacktive8/phase3/DAYCARE/final-project/middlewares/errorHandler.js">
-        <metrics statements="23" coveredstatements="22" conditionals="18" coveredconditionals="17" methods="2" coveredmethods="2"/>
-        <line num="1" count="6" type="stmt"/>
-        <line num="2" count="48" type="cond" truecount="2" falsecount="0"/>
-        <line num="3" count="28" type="stmt"/>
-        <line num="4" count="20" type="cond" truecount="2" falsecount="0"/>
+        <metrics statements="24" coveredstatements="23" conditionals="20" coveredconditionals="19" methods="2" coveredmethods="2"/>
+        <line num="1" count="7" type="stmt"/>
+        <line num="2" count="56" type="cond" truecount="2" falsecount="0"/>
+        <line num="3" count="31" type="stmt"/>
+        <line num="4" count="25" type="cond" truecount="2" falsecount="0"/>
         <line num="5" count="14" type="stmt"/>
         <line num="6" count="10" type="stmt"/>
-        <line num="7" count="10" type="cond" truecount="2" falsecount="0"/>
+        <line num="7" count="15" type="cond" truecount="2" falsecount="0"/>
         <line num="8" count="4" type="stmt"/>
         <line num="9" count="4" type="stmt"/>
         <line num="10" count="4" type="cond" truecount="4" falsecount="0"/>
         <line num="11" count="4" type="cond" truecount="2" falsecount="0"/>
         <line num="12" count="4" type="stmt"/>
-        <line num="13" count="6" type="cond" truecount="2" falsecount="0"/>
+        <line num="13" count="11" type="cond" truecount="2" falsecount="0"/>
         <line num="14" count="3" type="stmt"/>
-        <line num="15" count="3" type="cond" truecount="2" falsecount="0"/>
-        <line num="16" count="2" type="stmt"/>
-        <line num="17" count="2" type="stmt"/>
-        <line num="19" count="1" type="stmt"/>
-        <line num="20" count="1" type="stmt"/>
-        <line num="22" count="3" type="cond" truecount="1" falsecount="1"/>
-        <line num="23" count="3" type="stmt"/>
-        <line num="25" count="0" type="stmt"/>
-        <line num="29" count="6" type="stmt"/>
+        <line num="16" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="18" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="21" count="2" type="stmt"/>
+        <line num="23" count="2" type="stmt"/>
+        <line num="25" count="8" type="cond" truecount="2" falsecount="0"/>
+        <line num="26" count="7" type="stmt"/>
+        <line num="28" count="1" type="stmt"/>
+        <line num="32" count="7" type="stmt"/>
       </file>
     </package>
     <package name="final-project.models">
       <metrics statements="69" coveredstatements="68" conditionals="9" coveredconditionals="6" methods="20" coveredmethods="20"/>
       <file name="appointment.js" path="/home/dude/hacktive8/phase3/DAYCARE/final-project/models/appointment.js">
         <metrics statements="9" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
-        <line num="2" count="6" type="stmt"/>
-        <line num="3" count="6" type="stmt"/>
-        <line num="4" count="6" type="stmt"/>
-        <line num="13" count="6" type="stmt"/>
-        <line num="14" count="6" type="stmt"/>
-        <line num="15" count="6" type="stmt"/>
-        <line num="16" count="6" type="stmt"/>
-        <line num="20" count="6" type="stmt"/>
-        <line num="91" count="6" type="stmt"/>
+        <line num="2" count="7" type="stmt"/>
+        <line num="3" count="7" type="stmt"/>
+        <line num="4" count="7" type="stmt"/>
+        <line num="13" count="7" type="stmt"/>
+        <line num="14" count="7" type="stmt"/>
+        <line num="15" count="7" type="stmt"/>
+        <line num="16" count="7" type="stmt"/>
+        <line num="20" count="7" type="stmt"/>
+        <line num="91" count="7" type="stmt"/>
       </file>
       <file name="customer.js" path="/home/dude/hacktive8/phase3/DAYCARE/final-project/models/customer.js">
         <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
-        <line num="2" count="6" type="stmt"/>
-        <line num="3" count="6" type="stmt"/>
-        <line num="12" count="6" type="stmt"/>
-        <line num="13" count="6" type="stmt"/>
-        <line num="16" count="6" type="stmt"/>
-        <line num="63" count="6" type="stmt"/>
+        <line num="2" count="7" type="stmt"/>
+        <line num="3" count="7" type="stmt"/>
+        <line num="12" count="7" type="stmt"/>
+        <line num="13" count="7" type="stmt"/>
+        <line num="16" count="7" type="stmt"/>
+        <line num="63" count="7" type="stmt"/>
       </file>
       <file name="index.js" path="/home/dude/hacktive8/phase3/DAYCARE/final-project/models/index.js">
         <metrics statements="20" coveredstatements="19" conditionals="9" coveredconditionals="6" methods="3" coveredmethods="3"/>
-        <line num="3" count="6" type="stmt"/>
-        <line num="4" count="6" type="stmt"/>
-        <line num="5" count="6" type="stmt"/>
-        <line num="6" count="6" type="stmt"/>
-        <line num="7" count="6" type="cond" truecount="1" falsecount="1"/>
-        <line num="8" count="6" type="stmt"/>
-        <line num="9" count="6" type="stmt"/>
-        <line num="12" count="6" type="cond" truecount="1" falsecount="1"/>
+        <line num="3" count="7" type="stmt"/>
+        <line num="4" count="7" type="stmt"/>
+        <line num="5" count="7" type="stmt"/>
+        <line num="6" count="7" type="stmt"/>
+        <line num="7" count="7" type="cond" truecount="1" falsecount="1"/>
+        <line num="8" count="7" type="stmt"/>
+        <line num="9" count="7" type="stmt"/>
+        <line num="12" count="7" type="cond" truecount="1" falsecount="1"/>
         <line num="13" count="0" type="stmt"/>
-        <line num="15" count="6" type="stmt"/>
-        <line num="18" count="6" type="stmt"/>
-        <line num="21" count="54" type="cond" truecount="3" falsecount="0"/>
-        <line num="24" count="48" type="stmt"/>
-        <line num="25" count="48" type="stmt"/>
-        <line num="28" count="6" type="stmt"/>
-        <line num="29" count="48" type="cond" truecount="1" falsecount="1"/>
-        <line num="30" count="48" type="stmt"/>
-        <line num="34" count="6" type="stmt"/>
-        <line num="35" count="6" type="stmt"/>
-        <line num="37" count="6" type="stmt"/>
+        <line num="15" count="7" type="stmt"/>
+        <line num="18" count="7" type="stmt"/>
+        <line num="21" count="63" type="cond" truecount="3" falsecount="0"/>
+        <line num="24" count="56" type="stmt"/>
+        <line num="25" count="56" type="stmt"/>
+        <line num="28" count="7" type="stmt"/>
+        <line num="29" count="56" type="cond" truecount="1" falsecount="1"/>
+        <line num="30" count="56" type="stmt"/>
+        <line num="34" count="7" type="stmt"/>
+        <line num="35" count="7" type="stmt"/>
+        <line num="37" count="7" type="stmt"/>
       </file>
       <file name="invoice.js" path="/home/dude/hacktive8/phase3/DAYCARE/final-project/models/invoice.js">
         <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
-        <line num="4" count="6" type="stmt"/>
-        <line num="5" count="6" type="stmt"/>
-        <line num="14" count="6" type="stmt"/>
-        <line num="17" count="6" type="stmt"/>
-        <line num="29" count="6" type="stmt"/>
+        <line num="4" count="7" type="stmt"/>
+        <line num="5" count="7" type="stmt"/>
+        <line num="14" count="7" type="stmt"/>
+        <line num="17" count="7" type="stmt"/>
+        <line num="29" count="7" type="stmt"/>
       </file>
       <file name="paymentdetail.js" path="/home/dude/hacktive8/phase3/DAYCARE/final-project/models/paymentdetail.js">
         <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
-        <line num="4" count="6" type="stmt"/>
-        <line num="5" count="6" type="stmt"/>
-        <line num="13" count="6" type="stmt"/>
-        <line num="14" count="6" type="stmt"/>
-        <line num="17" count="6" type="stmt"/>
-        <line num="27" count="6" type="stmt"/>
+        <line num="4" count="7" type="stmt"/>
+        <line num="5" count="7" type="stmt"/>
+        <line num="13" count="7" type="stmt"/>
+        <line num="14" count="7" type="stmt"/>
+        <line num="17" count="7" type="stmt"/>
+        <line num="27" count="7" type="stmt"/>
       </file>
       <file name="paymentmethod.js" path="/home/dude/hacktive8/phase3/DAYCARE/final-project/models/paymentmethod.js">
         <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
-        <line num="4" count="6" type="stmt"/>
-        <line num="5" count="6" type="stmt"/>
-        <line num="13" count="6" type="stmt"/>
-        <line num="16" count="6" type="stmt"/>
-        <line num="22" count="6" type="stmt"/>
+        <line num="4" count="7" type="stmt"/>
+        <line num="5" count="7" type="stmt"/>
+        <line num="13" count="7" type="stmt"/>
+        <line num="16" count="7" type="stmt"/>
+        <line num="22" count="7" type="stmt"/>
       </file>
       <file name="presencelist.js" path="/home/dude/hacktive8/phase3/DAYCARE/final-project/models/presencelist.js">
         <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
-        <line num="2" count="6" type="stmt"/>
-        <line num="3" count="6" type="stmt"/>
-        <line num="4" count="6" type="stmt"/>
-        <line num="13" count="6" type="stmt"/>
-        <line num="16" count="6" type="stmt"/>
-        <line num="50" count="6" type="stmt"/>
+        <line num="2" count="7" type="stmt"/>
+        <line num="3" count="7" type="stmt"/>
+        <line num="4" count="7" type="stmt"/>
+        <line num="13" count="7" type="stmt"/>
+        <line num="16" count="7" type="stmt"/>
+        <line num="50" count="7" type="stmt"/>
       </file>
       <file name="price.js" path="/home/dude/hacktive8/phase3/DAYCARE/final-project/models/price.js">
         <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
-        <line num="2" count="6" type="stmt"/>
-        <line num="3" count="6" type="stmt"/>
-        <line num="12" count="6" type="stmt"/>
-        <line num="15" count="6" type="stmt"/>
-        <line num="26" count="6" type="stmt"/>
+        <line num="2" count="7" type="stmt"/>
+        <line num="3" count="7" type="stmt"/>
+        <line num="12" count="7" type="stmt"/>
+        <line num="15" count="7" type="stmt"/>
+        <line num="26" count="7" type="stmt"/>
       </file>
       <file name="user.js" path="/home/dude/hacktive8/phase3/DAYCARE/final-project/models/user.js">
         <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
-        <line num="2" count="6" type="stmt"/>
-        <line num="3" count="6" type="stmt"/>
-        <line num="4" count="6" type="stmt"/>
-        <line num="13" count="6" type="stmt"/>
-        <line num="16" count="6" type="stmt"/>
-        <line num="39" count="11" type="stmt"/>
-        <line num="44" count="6" type="stmt"/>
+        <line num="2" count="7" type="stmt"/>
+        <line num="3" count="7" type="stmt"/>
+        <line num="4" count="7" type="stmt"/>
+        <line num="13" count="7" type="stmt"/>
+        <line num="16" count="7" type="stmt"/>
+        <line num="39" count="12" type="stmt"/>
+        <line num="44" count="7" type="stmt"/>
       </file>
     </package>
     <package name="final-project.routes">
       <metrics statements="81" coveredstatements="81" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="appointment.js" path="/home/dude/hacktive8/phase3/DAYCARE/final-project/routes/appointment.js">
         <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="6" type="stmt"/>
-        <line num="2" count="6" type="stmt"/>
-        <line num="6" count="6" type="stmt"/>
-        <line num="8" count="6" type="stmt"/>
-        <line num="9" count="6" type="stmt"/>
-        <line num="11" count="6" type="stmt"/>
-        <line num="16" count="6" type="stmt"/>
-        <line num="22" count="6" type="stmt"/>
+        <line num="1" count="7" type="stmt"/>
+        <line num="2" count="7" type="stmt"/>
+        <line num="6" count="7" type="stmt"/>
+        <line num="8" count="7" type="stmt"/>
+        <line num="9" count="7" type="stmt"/>
+        <line num="11" count="7" type="stmt"/>
+        <line num="16" count="7" type="stmt"/>
+        <line num="22" count="7" type="stmt"/>
       </file>
       <file name="checkout.js" path="/home/dude/hacktive8/phase3/DAYCARE/final-project/routes/checkout.js">
         <metrics statements="9" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="6" type="stmt"/>
-        <line num="2" count="6" type="stmt"/>
-        <line num="4" count="6" type="stmt"/>
-        <line num="6" count="6" type="stmt"/>
-        <line num="7" count="6" type="stmt"/>
-        <line num="8" count="6" type="stmt"/>
-        <line num="9" count="6" type="stmt"/>
-        <line num="10" count="6" type="stmt"/>
-        <line num="12" count="6" type="stmt"/>
+        <line num="1" count="7" type="stmt"/>
+        <line num="2" count="7" type="stmt"/>
+        <line num="4" count="7" type="stmt"/>
+        <line num="6" count="7" type="stmt"/>
+        <line num="7" count="7" type="stmt"/>
+        <line num="8" count="7" type="stmt"/>
+        <line num="9" count="7" type="stmt"/>
+        <line num="10" count="7" type="stmt"/>
+        <line num="12" count="7" type="stmt"/>
       </file>
       <file name="customer.js" path="/home/dude/hacktive8/phase3/DAYCARE/final-project/routes/customer.js">
         <metrics statements="9" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="6" type="stmt"/>
-        <line num="2" count="6" type="stmt"/>
-        <line num="3" count="6" type="stmt"/>
-        <line num="4" count="6" type="stmt"/>
-        <line num="7" count="6" type="stmt"/>
-        <line num="9" count="6" type="stmt"/>
-        <line num="10" count="6" type="stmt"/>
-        <line num="11" count="6" type="stmt"/>
-        <line num="13" count="6" type="stmt"/>
+        <line num="1" count="7" type="stmt"/>
+        <line num="2" count="7" type="stmt"/>
+        <line num="3" count="7" type="stmt"/>
+        <line num="4" count="7" type="stmt"/>
+        <line num="7" count="7" type="stmt"/>
+        <line num="9" count="7" type="stmt"/>
+        <line num="10" count="7" type="stmt"/>
+        <line num="11" count="7" type="stmt"/>
+        <line num="13" count="7" type="stmt"/>
       </file>
       <file name="index.js" path="/home/dude/hacktive8/phase3/DAYCARE/final-project/routes/index.js">
         <metrics statements="22" coveredstatements="22" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="6" type="stmt"/>
-        <line num="3" count="6" type="stmt"/>
-        <line num="4" count="6" type="stmt"/>
-        <line num="5" count="6" type="stmt"/>
-        <line num="6" count="6" type="stmt"/>
-        <line num="7" count="6" type="stmt"/>
-        <line num="8" count="6" type="stmt"/>
-        <line num="9" count="6" type="stmt"/>
-        <line num="10" count="6" type="stmt"/>
-        <line num="12" count="6" type="stmt"/>
-        <line num="13" count="6" type="stmt"/>
-        <line num="15" count="6" type="stmt"/>
-        <line num="16" count="6" type="stmt"/>
-        <line num="18" count="6" type="stmt"/>
-        <line num="20" count="6" type="stmt"/>
-        <line num="21" count="6" type="stmt"/>
-        <line num="22" count="6" type="stmt"/>
-        <line num="23" count="6" type="stmt"/>
-        <line num="24" count="6" type="stmt"/>
-        <line num="25" count="6" type="stmt"/>
-        <line num="26" count="6" type="stmt"/>
-        <line num="30" count="6" type="stmt"/>
+        <line num="1" count="7" type="stmt"/>
+        <line num="3" count="7" type="stmt"/>
+        <line num="4" count="7" type="stmt"/>
+        <line num="5" count="7" type="stmt"/>
+        <line num="6" count="7" type="stmt"/>
+        <line num="7" count="7" type="stmt"/>
+        <line num="8" count="7" type="stmt"/>
+        <line num="9" count="7" type="stmt"/>
+        <line num="10" count="7" type="stmt"/>
+        <line num="12" count="7" type="stmt"/>
+        <line num="13" count="7" type="stmt"/>
+        <line num="15" count="7" type="stmt"/>
+        <line num="16" count="7" type="stmt"/>
+        <line num="18" count="7" type="stmt"/>
+        <line num="20" count="7" type="stmt"/>
+        <line num="21" count="7" type="stmt"/>
+        <line num="22" count="7" type="stmt"/>
+        <line num="23" count="7" type="stmt"/>
+        <line num="24" count="7" type="stmt"/>
+        <line num="25" count="7" type="stmt"/>
+        <line num="26" count="7" type="stmt"/>
+        <line num="30" count="7" type="stmt"/>
       </file>
       <file name="payment.js" path="/home/dude/hacktive8/phase3/DAYCARE/final-project/routes/payment.js">
         <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="6" type="stmt"/>
-        <line num="2" count="6" type="stmt"/>
-        <line num="4" count="6" type="stmt"/>
-        <line num="5" count="6" type="stmt"/>
-        <line num="6" count="6" type="stmt"/>
-        <line num="8" count="6" type="stmt"/>
+        <line num="1" count="7" type="stmt"/>
+        <line num="2" count="7" type="stmt"/>
+        <line num="4" count="7" type="stmt"/>
+        <line num="5" count="7" type="stmt"/>
+        <line num="6" count="7" type="stmt"/>
+        <line num="8" count="7" type="stmt"/>
       </file>
       <file name="presence.js" path="/home/dude/hacktive8/phase3/DAYCARE/final-project/routes/presence.js">
         <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="6" type="stmt"/>
-        <line num="2" count="6" type="stmt"/>
-        <line num="3" count="6" type="stmt"/>
-        <line num="5" count="6" type="stmt"/>
-        <line num="7" count="6" type="stmt"/>
-        <line num="8" count="6" type="stmt"/>
-        <line num="10" count="6" type="stmt"/>
+        <line num="1" count="7" type="stmt"/>
+        <line num="2" count="7" type="stmt"/>
+        <line num="3" count="7" type="stmt"/>
+        <line num="5" count="7" type="stmt"/>
+        <line num="7" count="7" type="stmt"/>
+        <line num="8" count="7" type="stmt"/>
+        <line num="10" count="7" type="stmt"/>
       </file>
       <file name="price.js" path="/home/dude/hacktive8/phase3/DAYCARE/final-project/routes/price.js">
         <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="6" type="stmt"/>
-        <line num="3" count="6" type="stmt"/>
-        <line num="6" count="6" type="stmt"/>
-        <line num="7" count="6" type="stmt"/>
-        <line num="9" count="6" type="stmt"/>
+        <line num="1" count="7" type="stmt"/>
+        <line num="3" count="7" type="stmt"/>
+        <line num="6" count="7" type="stmt"/>
+        <line num="7" count="7" type="stmt"/>
+        <line num="9" count="7" type="stmt"/>
       </file>
       <file name="search.js" path="/home/dude/hacktive8/phase3/DAYCARE/final-project/routes/search.js">
         <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="6" type="stmt"/>
-        <line num="2" count="6" type="stmt"/>
-        <line num="3" count="6" type="stmt"/>
-        <line num="5" count="6" type="stmt"/>
-        <line num="7" count="6" type="stmt"/>
+        <line num="1" count="7" type="stmt"/>
+        <line num="2" count="7" type="stmt"/>
+        <line num="3" count="7" type="stmt"/>
+        <line num="5" count="7" type="stmt"/>
+        <line num="7" count="7" type="stmt"/>
       </file>
       <file name="user.js" path="/home/dude/hacktive8/phase3/DAYCARE/final-project/routes/user.js">
         <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="6" type="stmt"/>
-        <line num="2" count="6" type="stmt"/>
-        <line num="3" count="6" type="stmt"/>
-        <line num="4" count="6" type="stmt"/>
-        <line num="6" count="6" type="stmt"/>
-        <line num="7" count="6" type="stmt"/>
-        <line num="8" count="6" type="stmt"/>
-        <line num="9" count="6" type="stmt"/>
-        <line num="10" count="6" type="stmt"/>
-        <line num="12" count="6" type="stmt"/>
+        <line num="1" count="7" type="stmt"/>
+        <line num="2" count="7" type="stmt"/>
+        <line num="3" count="7" type="stmt"/>
+        <line num="4" count="7" type="stmt"/>
+        <line num="6" count="7" type="stmt"/>
+        <line num="7" count="7" type="stmt"/>
+        <line num="8" count="7" type="stmt"/>
+        <line num="9" count="7" type="stmt"/>
+        <line num="10" count="7" type="stmt"/>
+        <line num="12" count="7" type="stmt"/>
       </file>
     </package>
   </project>

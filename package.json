@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-
   "scripts": {
     "test": "jest --detectOpenHandles --forceExit --runInBand --collectCoverage",
     "dev": "nodemon bin/http",
@@ -31,6 +30,7 @@
     "nodemon": "^2.0.7",
     "pg": "^8.6.0",
     "sequelize": "^6.6.2",
+    "socket.io": "^2.3.0",
     "stripe": "^8.157.0",
     "xendit-node": "^1.13.0"
   },
