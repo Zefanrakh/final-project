@@ -34,7 +34,7 @@ const customerAppointmentAuthorization = async (req, res, next) => {
         model: Appointment,
       },
     });
-    console.log(customer,'masuk sisni');
+    console.log(customer, "masuk sisni");
     const targetAppointment = customer.Appointments.find((appointment) => {
       appointment.id === Number(req.params.id);
     });

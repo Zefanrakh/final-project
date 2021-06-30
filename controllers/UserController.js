@@ -4,6 +4,7 @@ const { sign } = require("../helpers/jwt");
 
 class UserController {
   static register(req, res, next) {
+    let userId;
     const {
       name,
       username,
@@ -21,6 +22,7 @@ class UserController {
       role: "customer",
     })
       .then((user) => {
+        userId = user.id;
         return Customer.create({
           name,
           email,
@@ -30,28 +32,21 @@ class UserController {
         });
       })
       .then((customer) => {
-        return Customer.findOne({
+        return User.findOne({
           where: {
-            id: customer.id,
+            id: userId,
           },
           include: {
-            model: User,
-            attributes: ["id", "username", "role", "profilePicture"],
+            model: Customer,
           },
         });
       })
       .then((user) => {
         const access_token = sign({
-          username: user.User.username,
-          role: user.User.role,
-        });
-        const payload = {
           username: user.username,
-          profilePicture: user.profilePicture,
           role: user.role,
-          CustomerId: user.Customer.id
-        }
-        res.status(201).json({ user: payload, access_token });
+        });
+        res.status(201).json({ user, access_token });
       })
       .catch((err) => {
         next(err);
@@ -64,7 +59,10 @@ class UserController {
     User.findOne({
       where: {
         username,
-      }, include: {model: Customer}
+      },
+      include: {
+        model: Customer,
+      },
     })
       .then((user) => {
         if (user) {
@@ -76,12 +74,7 @@ class UserController {
             });
             res.status(200).json({
               access_token,
-              user: {
-                username: user.username,
-                profilePicture: user.profilePicture,
-                role: user.role,
-                CustomerId: user.Customer.id
-              },
+              user,
             });
           } else {
             next({ status: 404, message: "Wrong username or password" });
@@ -100,16 +93,13 @@ class UserController {
     User.findOne({
       where: {
         username,
-      }, include: {model: Customer}
+      },
+      include: {
+        model: Customer,
+      },
     })
       .then((user) => {
-        const payload = {
-          username: user.username,
-          profilePicture: user.profilePicture,
-          role: user.role,
-          CustomerId: user.Customer.id
-        }
-        res.status(200).json({user: payload});
+        res.status(200).json({ user });
       })
       .catch((err) => {
         next(err);
