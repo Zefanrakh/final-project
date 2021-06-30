@@ -5,16 +5,16 @@ const { User, Appointment, Customer } = require('../models')
 const axios = require('axios')
 
 // const uuid = axios.get('https://www.uuidgenerator.net/api/version1')
-const externalID = 'd0175664-dbbf-4649-897f-3344258675aa'
+const externalID = 'd0175664-dbbf-4649-897f-3344258675ab'
 let customerAccessToken, customerId, appointmentId, invoiceId
 
 const userData = {
-  username: 'ekowidya24',
+  username: 'ekowidya25',
   password: 'ekowidya123',
   profilePicture:
     "https://cdn.pixabay.com/photo/2015/03/04/22/35/head-659652_960_720.png",
   role: "customer",
-  email: 'ekowidya24@gmail.com'
+  email: 'ekowidya25@gmail.com'
 }
 
 let appointmentData = {
@@ -79,7 +79,8 @@ const VAccountInput = {
 }
 const invoiceInput = {
   amount: 500000,
-  email: 'karina@gmail.com'
+  email: 'karina@gmail.com',
+  description: 'Monthly - Toddler'
 }
 
 const VApayment = {
@@ -606,26 +607,20 @@ describe('Create Invoice | Success', () => {
         expect(res.body).toHaveProperty('id', expect.any(Number))
         expect(res.body).toHaveProperty('externalID', expect.any(String))
         expect(res.body).toHaveProperty('amount', invoiceInput.amount)
-        expect(res.body).toHaveProperty('description', 'SMART DAYCARE')
+        expect(res.body).toHaveProperty('description', invoiceInput.description)
         expect(res.body).toHaveProperty('invoiceUrl', expect.any(String))
-        // expect(res.body).toEqual(expect.objectContaining({
-        //   id:expect.any(Number),
-        //   externalID:expect.any(String),
-        //   amount: invoiceInput.amount,
-        //   description:'SMART DAYCARE',
-        //   invoiceUrl:expect.any(String),
-        // }))
         done()
       })
   })
 })
 
 describe('Create Invoice | Failed', () => {
-  const invalidAmount = {
-    amount: '',
-    email: 'karina@gmail.com'
-  }
+
   it('| Invalid Amount', done => {
+    const invalidAmount = {
+      amount: '',
+      email: 'karina@gmail.com'
+    }
     request(app)
       .post('/checkout/invoice')
       .set('access_token', customerAccessToken)

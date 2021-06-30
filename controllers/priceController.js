@@ -15,7 +15,7 @@ module.exports = class Controller {
     const { id } = req.params
     try {
       const price = await Price.findByPk(id)
-      !price && next({ status: 404, message: 'Data Not Found  ' })
+      !price && next({ status: 404, message: 'Data Not Found' })
       res.status(200).json(price)
     } catch (error) {
       next(error)
