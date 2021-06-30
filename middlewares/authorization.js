@@ -46,6 +46,5 @@ const customerAppointmentAuthorization = async (req, res, next) => {
 
 module.exports = {
   adminAuthorization,
-  customerAuthorization,
-  customerAppointmentAuthorization,
+  customerAuthorization
 };

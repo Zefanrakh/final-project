@@ -42,6 +42,10 @@ class Controller {
           },
         });
       }
+      console.log(result,'======> result');
+      if(!result){
+        throw({status: 400, message: 'wrong searchType'})
+      }
       res.status(200).json({ result });
     } catch (err) {
       next(err);
