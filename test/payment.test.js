@@ -24,6 +24,7 @@ let appointmentData = {
   startDate: '2021-07-06',
   endDate: '2021-07-08',
   status: 'Active',
+  PriceId: 1, 
   childCategory: 'Toddler',
   packageCategory: 'Monthly',
   note: 'Allergic to Nuts'

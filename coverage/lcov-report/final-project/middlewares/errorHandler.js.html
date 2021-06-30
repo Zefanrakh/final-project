@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">30.77% </span>
+                <span class="strong">96.15% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>8/26</span>
+                <span class='fraction'>25/26</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">16.67% </span>
+                <span class="strong">94.44% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>3/18</span>
+                <span class='fraction'>17/18</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">30.43% </span>
+                <span class="strong">95.65% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>7/23</span>
+                <span class='fraction'>22/23</span>
             </div>
         
             
@@ -55,7 +55,7 @@
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -86,58 +86,58 @@
 <a name='L27'></a><a href='#L27'>27</a>
 <a name='L28'></a><a href='#L28'>28</a>
 <a name='L29'></a><a href='#L29'>29</a>
-<a name='L30'></a><a href='#L30'>30</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">15x</span>
-<span class="cline-any cline-yes">11x</span>
+<a name='L30'></a><a href='#L30'>30</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">48x</span>
+<span class="cline-any cline-yes">28x</span>
+<span class="cline-any cline-yes">20x</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const errorHandler = (err, req, res, next) =&gt; {
   if (err.status) {
     res.status(err.status).json({ message: err.message });
-  } else <span class="missing-if-branch" title="else path not taken" >E</span>if (err.errors) {
+  } else if (err.errors) {
     let message = err.errors.map((el) =&gt; el.message);
     res.status(400).json({ message });
-  } else <span class="cstat-no" title="statement not covered" >if (err.raw) {</span>
-    const { statusCode, message, param, code } = <span class="cstat-no" title="statement not covered" >err.raw</span>
-    let msg = <span class="cstat-no" title="statement not covered" >message</span>
-<span class="cstat-no" title="statement not covered" >    if (!code || code !== "parameter_missing") { <span class="cstat-no" title="statement not covered" >msg = `${param}\n${message}` </span>}</span>
-<span class="cstat-no" title="statement not covered" >    if (code === 'resource_missing') { <span class="cstat-no" title="statement not covered" >msg = message.split(':')[0] </span>}</span>
-<span class="cstat-no" title="statement not covered" >    res.status(statusCode).json({ message: msg });</span>
-  } else <span class="cstat-no" title="statement not covered" >if (err.response) {</span>
-    const { status, data } = <span class="cstat-no" title="statement not covered" >err.response</span>
-<span class="cstat-no" title="statement not covered" >    if (status === 404) {</span>
-      const message = <span class="cstat-no" title="statement not covered" >"Not Found"</span>
-<span class="cstat-no" title="statement not covered" >      res.status(status).json({ message })</span>
+  } else if (err.raw) {
+    const { statusCode, message, param, code } = err.raw
+    let msg = message
+    if (!code || code !== "parameter_missing") { msg = `${param}\n${message}` }
+    if (code === 'resource_missing') { msg = message.split(':')[0] }
+    res.status(statusCode).json({ message: msg });
+  } else if (err.response) {
+    const { status, data } = err.response
+    if (status === 404) {
+      const message = "Not Found"
+      res.status(status).json({ message })
     } else {
-      const message = <span class="cstat-no" title="statement not covered" >data.errors[0].messages</span>
-<span class="cstat-no" title="statement not covered" >      res.status(status).json({ message })</span>
+      const message = data.errors[0].messages
+      res.status(status).json({ message })
     }
-  } else <span class="cstat-no" title="statement not covered" >if (err.name === "JsonWebTokenError") {</span>
-<span class="cstat-no" title="statement not covered" >    res.status(403).json({ message: "Invalid signature. You don't have permission to access this page" })</span>
+  } else <span class="missing-if-branch" title="else path not taken" >E</span>if (err.name === "JsonWebTokenError") {
+    res.status(403).json({ message: "Invalid signature. You don't have permission to access this page" })
   } else {
 <span class="cstat-no" title="statement not covered" >    res.status(500).json({ message: "Internal Server Error" });</span>
   }
@@ -151,7 +151,7 @@ module.exports = errorHandler;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Wed Jun 30 2021 14:46:35 GMT+0700 (Western Indonesia Time)
+                at Wed Jun 30 2021 23:53:26 GMT+0700 (Western Indonesia Time)
             </div>
         </div>
         <script src="../../prettify.js"></script>

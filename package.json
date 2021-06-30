@@ -3,9 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "jest": {
-    "testPathIgnorePatterns": ["./controllers/appointment"]
-  },
+
   "scripts": {
     "test": "jest --detectOpenHandles --forceExit --runInBand --collectCoverage",
     "dev": "nodemon bin/http",

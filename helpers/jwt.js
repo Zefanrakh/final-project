@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 const jwt = require("jsonwebtoken");
 const PRIVATE_KEY = process.env.PRIVATE_KEY;
 
