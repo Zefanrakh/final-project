@@ -6,6 +6,7 @@ const CustomerRouter = require("./customer");
 const UserRouter = require("./user");
 const checkoutRouter = require("./checkout");
 const paymentRouter = require('./payment')
+const priceRouter = require('./price')
 const authentication = require("../middlewares/authentication");
 const { invoiceCallback } = require("../controllers/payment/xendit");
 
