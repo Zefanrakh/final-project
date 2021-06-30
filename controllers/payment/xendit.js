@@ -1,20 +1,25 @@
 const xenditInstance = require("../../helpers/xendit")
+const { Invoice: InvoiceModel, PaymentDetail } = require('../../models')
+const callbackToken = process.env.CALLBACK_TOKEN
+
 const axios = require('axios')
-const { VirtualAcc, Invoice } = xenditInstance
+const { VirtualAcc, Invoice, EWallet } = xenditInstance
 const vaSpecificOptions = {}
 const va = new VirtualAcc(vaSpecificOptions)
 
+const ewalletSpecificOptions = {};
+const ew = new EWallet(ewalletSpecificOptions);
+
 const invoiceSpecificOptions = {};
 const inv = new Invoice(invoiceSpecificOptions);
-
 module.exports = class Controller {
 
   static async createVirtualAccount(req, res, next) {
-    const uuid = await axios.get('https://www.uuidgenerator.net/api/version1')
-    const { bankCode, expectedAmount: expectedAmt, name } = req.body
-    const input = { bankCode, name, externalID: uuid.data, isClosed: true, expectedAmt, isSingleUse: true }
+    // const uuid = await axios.get('https://www.uuidgenerator.net/api/version1')
+    const { bankCode, expectedAmount: expectedAmt } = req.body
+    const VAInput = { bankCode, name: 'SMART DAYCARE', externalID: uuid.data, isClosed: true, expectedAmt, isSingleUse: true }
     try {
-      const virtualAccount = await va.createFixedVA(input)
+      const virtualAccount = await va.createFixedVA(VAInput)
       res.status(200).json(virtualAccount)
     } catch (error) {
       next(error)
@@ -39,13 +44,64 @@ module.exports = class Controller {
   }
 
   static async createInvoice(req, res, next) {
-    const { externalID, payerEmail, amount, description } = req.body
-    const input = { externalID, payerEmail, amount, description }
+    const uuid = await axios.get('https://www.uuidgenerator.net/api/version1')
+    const externalID = uuid.data
+    const { amount, email: payerEmail } = req.body
+    const input = { amount, payerEmail, externalID, description: "SMART DAYCARE" }
     try {
-      const response = await inv.createInvoice( input )
-      res.status(200).json(response)
+      const newInvoice = await inv.createInvoice(input)
+      const {
+        external_id: externalID,
+        status,
+        amount,
+        payer_email: payerEmail,
+        description,
+        expiry_date: expiryDate,
+        invoice_url: invoiceUrl
+      } = newInvoice
+
+      const invoiceInput = { externalID, status, amount, description, expiryDate, invoiceUrl, payerEmail }
+      const dbInvoice = await InvoiceModel.create(invoiceInput)
+      console.log(dbInvoice);
+      res.status(200).json(dbInvoice)
     } catch (error) {
       next(error)
     }
   }
+
+  static async invoiceCallback(req, res, next) {
+    const { status, payment_channel: paymentMethod, external_id: externalID } = req.body
+    const input = { status, paymentMethod }
+
+    try {
+      const updatedInvoice = await InvoiceModel.update(input, { where: { externalID }, returning: true })
+      res.status(200).json({ message: 'Success' })
+    } catch (error) {
+      next(error)
+    }
+
+  }
+
+  // static async createEWalletPayment(req, res, next) {
+  //   const referenceID = "EW" + await axios.get('https://www.uuidgenerator.net/api/version1')
+  //   const { amount, channelCode } = req.body
+  //   const defaultInput = {
+  //     currency: 'IDR',
+  //     checkoutMethod: 'ONE_TIME_PAYMENT',
+  //     referenceID,
+  //     channelProperties: {}
+  //   }
+  //   // ID_OVO, ID_DANA, ID_LINKAJA, ID_SHOPEEPAY,
+  //   if (channelCode === 'ID_OVO') {
+  //     const { mobileNumber } = req.body
+  //     const input = {
+  //       ...defaultInput,
+  //       mobileNumber,
+
+  //     }
+
+  //   }
+
+  // }
+
 }

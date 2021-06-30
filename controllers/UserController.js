@@ -4,24 +4,28 @@ const { sign } = require("../helpers/jwt");
 
 class UserController {
   static register(req, res, next) {
-    const { username, email, password } = req.body;
-    const defaultData = {
-      phoneNumber: 12345678,
-      name: username,
-      address: "1st street, 3rd block",
-    };
+    const {
+      name,
+      username,
+      email,
+      password,
+      profilePicture,
+      address,
+      phoneNumber,
+    } = req.body;
 
     User.create({
       username,
       password,
-      profilePicture:
-        "https://cdn.pixabay.com/photo/2015/03/04/22/35/head-659652_960_720.png",
+      profilePicture,
       role: "customer",
     })
       .then((user) => {
         return Customer.create({
+          name,
           email,
-          ...defaultData,
+          phoneNumber,
+          address,
           UserId: user.id,
         });
       })
@@ -32,7 +36,7 @@ class UserController {
           },
           include: {
             model: User,
-            attributes: ["username", "role", "profilePicture"],
+            attributes: ["id", "username", "role", "profilePicture"],
           },
         });
       })
@@ -41,10 +45,15 @@ class UserController {
           username: user.User.username,
           role: user.User.role,
         });
-        res.status(201).json({ user, access_token });
+        const payload = {
+          username: user.username,
+          profilePicture: user.profilePicture,
+          role: user.role,
+          CustomerId: user.Customer.id
+        }
+        res.status(201).json({ user: payload, access_token });
       })
       .catch((err) => {
-        console.log(err);
         next(err);
       });
   }
@@ -75,14 +84,13 @@ class UserController {
               },
             });
           } else {
-            throw { status: 404, msg: "Wrong username or password" };
+            next({ status: 404, message: "Wrong username or password" });
           }
         } else {
-          throw { status: 404, msg: "Wrong username or password" };
+          next({ status: 404, message: "Wrong username or password" });
         }
       })
       .catch((err) => {
-        console.log(err);
         next(err);
       });
   }
@@ -119,7 +127,6 @@ class UserController {
         res.status(200).json({ user });
       })
       .catch((err) => {
-        console.log(err);
         next(err);
       });
   }

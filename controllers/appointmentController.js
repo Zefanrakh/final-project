@@ -47,15 +47,21 @@ class Controller {
                 res.status(201).json(insertedData)
             }
         } catch (error) {
+            console.log(error ,'==================>>>');
             next(error);
         }
     }
 
-    static async getAppointmentByCustomerId(req, res, next){
+  static async getAppointmentByCustomerId(req, res, next) {
         try {
-            console.log('masik controller');
-            const appointment = await Appointment.findAll({where: {CustomerId: req.params.CustomerId}})
-            res.status(200).json(appointment)
+            const appointment = await Appointment.findAll({
+                where: { CustomerId: req.params.CustomerId },
+            });
+            if (appointment.length > 0) {
+                res.status(200).json(appointment);
+            } else {
+                next({ status: 404, message: "data not found" });
+            }
         } catch (error) {
             next(error);
         }

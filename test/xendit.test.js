@@ -1,6 +1,7 @@
 const request = require('supertest')
 const app = require('../app')
-
+const { sign } = require('../helpers/jwt')
+const { User } = require('../models')
 
 
 const VAccountInput = {
@@ -9,23 +10,56 @@ const VAccountInput = {
   expectedAmount: 500000,
 }
 
-const invalidAmountInput = {
-  bankCode: 'BCA',
-  name: 'Karen',
-  expectedAmount: ''
-}
-
 const VApayment = {
   amount: 500000,
   externalID: 'e6bba81a-d80c-11eb-b8bc-0242ac130003'
 }
 
+let customerAccessToken
+const customerData = {
+  username: 'ekowidya10',
+  email: 'ekowidya10@gmail.com',
+  password: 'ekowidya123'
+}
+
+const loginDetail = (({ email, ...key }) => key)(customerData)
+
+// beforeAll((done) => {
+//   request(app)
+//     .post('user/login')
+//     .send(loginDetail)
+//     .end((err, res) => {
+//       if (err) return done(err)
+//       customerAccessToken = res.body.access_token
+//       console.log(customerAccessToken);
+//       done()
+//     })
+// })
+
+
+beforeAll((done) => {
+  User.findOne({ where: { username: customerData.username } })
+    .then(foundUser => {
+      customerAccessToken = sign({
+        username: foundUser.username,
+        role: foundUser.role
+      })
+      done()
+    })
+    .catch(error => done(error))
+
+})
+
+// afterAll(done +> {
+
+// })
 
 describe('Create Virtual Account | Success', () => {
   it('Create Virtual Account', done => {
     request(app)
       .post('/checkout/virtual-account')
       .send(VAccountInput)
+      .set('access_token', customerAccessToken)
       .end((err, res) => {
         if (err) return done(err)
         expect(res.status).toBe(200)
@@ -37,10 +71,12 @@ describe('Create Virtual Account | Success', () => {
 
 describe('Create Virtual Account | Failed', () => {
   it('Invalid Request Error | Invalid Amount Field', done => {
+    const invalidAmountInput = { ...VAccountInput, expectedAmount: "" }
     const expected = 'There was an error with the format submitted to the server.'
     request(app)
       .post('/checkout/virtual-account')
       .send(invalidAmountInput)
+      .set('access_token', customerAccessToken)
       .end((err, res) => {
         if (err) return done(err)
         expect(res.status).toBe(400)
@@ -58,6 +94,7 @@ describe('Create Virtual Account | Failed', () => {
     request(app)
       .post('/checkout/virtual-account')
       .send(missingAmountInput)
+      .set('access_token', customerAccessToken)
       .end((err, res) => {
         if (err) return done(err)
         expect(res.status).toBe(400)
@@ -72,6 +109,7 @@ describe('Create Virtual Account | Failed', () => {
     request(app)
       .post('/checkout/virtual-account')
       .send(invalidBankCode)
+      .set('access_token', customerAccessToken)
       .end((err, res) => {
         if (err) return done(err)
         expect(res.status).toBe(400)
@@ -86,6 +124,7 @@ describe('Create Virtual Account | Failed', () => {
     request(app)
       .post('/checkout/virtual-account')
       .send(invalidName)
+      .set('access_token', customerAccessToken)
       .end((err, res) => {
         if (err) return done(err)
         expect(res.status).toBe(400)
@@ -100,6 +139,7 @@ describe('Create Virtual Account | Failed', () => {
     request(app)
       .post('/checkout/virtual-account')
       .send(missingName)
+      .set('access_token', customerAccessToken)
       .end((err, res) => {
         if (err) return done(err)
         expect(res.status).toBe(400)
@@ -118,6 +158,7 @@ describe('Virtual Account Payment | Success', () => {
     request(app)
       .post('/checkout/virtual-account/pay')
       .send(VApayment)
+      .set('access_token', customerAccessToken)
       .end((err, res) => {
         if (err) return done(err)
         expect(res.status).toBe(200)
@@ -135,6 +176,7 @@ describe('Virtual Account Payment | Failed', () => {
     request(app)
       .post('/checkout/virtual-account/pay')
       .send(missingAmount)
+      .set('access_token', customerAccessToken)
       .end((err, res) => {
         if (err) return done(err)
         expect(res.status).toBe(400)
@@ -152,6 +194,7 @@ describe('Virtual Account Payment | Failed', () => {
     request(app)
       .post('/checkout/virtual-account/pay')
       .send(invalidExternalID)
+      .set('access_token', customerAccessToken)
       .end((err, res) => {
         if (err) return done(err)
         expect(res.status).toBe(404)
@@ -161,25 +204,6 @@ describe('Virtual Account Payment | Failed', () => {
   })
 })
 
-describe('Create Invoice | Success', () => {
-  it('Create Invoice', done => {
-
-    const input = {
-      externalID: '92e42760-d6b0-11eb-b8bc-0242ac130003',
-      payerEmail: 'mcritaryo@gmail.com',
-      amount: 500000,
-      description: 'Jest Test'
-    }
-    request(app)
-      .post('/checkout/invoice')
-      .send(input)
-      .end((err, res) => {
-        if (err) return done(err)
-        expect(res.status).toBe(200)
-        done()
-      })
-  })
-})
 
 
 
