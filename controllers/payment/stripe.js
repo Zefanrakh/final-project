@@ -30,6 +30,7 @@ module.exports = class Controller {
     const sessionId = req.params.id
     try {
       const LineItemList = await stripe.checkout.sessions.listLineItems(sessionId)
+      //update paymentdetail table
       res.status(200).json(LineItemList.data[0])
     } catch (error) {
       next(error)
