@@ -89,26 +89,4 @@ module.exports = class Controller {
 
   }
 
-  // static async createEWalletPayment(req, res, next) {
-  //   const referenceID = "EW" + await axios.get('https://www.uuidgenerator.net/api/version1')
-  //   const { amount, channelCode } = req.body
-  //   const defaultInput = {
-  //     currency: 'IDR',
-  //     checkoutMethod: 'ONE_TIME_PAYMENT',
-  //     referenceID,
-  //     channelProperties: {}
-  //   }
-  //   // ID_OVO, ID_DANA, ID_LINKAJA, ID_SHOPEEPAY,
-  //   if (channelCode === 'ID_OVO') {
-  //     const { mobileNumber } = req.body
-  //     const input = {
-  //       ...defaultInput,
-  //       mobileNumber,
-
-  //     }
-
-  //   }
-
-  // }
-
 }
