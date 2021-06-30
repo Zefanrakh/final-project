@@ -22,7 +22,6 @@ class CustomerController{
         .then(customer=>{
             res.status(201).json({customer})
         }).catch(err=>{
-            console.log(err);
             next(err)
         })
     }

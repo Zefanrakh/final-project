@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">37.04% </span>
+                <span class="strong">30.77% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>10/27</span>
+                <span class='fraction'>8/26</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">33.33% </span>
+                <span class="strong">16.67% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>6/18</span>
+                <span class='fraction'>3/18</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/2</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">41.67% </span>
+                <span class="strong">30.43% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>10/24</span>
+                <span class='fraction'>7/23</span>
             </div>
         
             
@@ -86,23 +86,19 @@
 <a name='L27'></a><a href='#L27'>27</a>
 <a name='L28'></a><a href='#L28'>28</a>
 <a name='L29'></a><a href='#L29'>29</a>
-<a name='L30'></a><a href='#L30'>30</a>
-<a name='L31'></a><a href='#L31'>31</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L30'></a><a href='#L30'>30</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -111,28 +107,27 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const errorHandler = (err, req, res, next) =&gt; {
-  console.log(err);
   if (err.status) {
     res.status(err.status).json({ message: err.message });
-  } else <span class="missing-if-branch" title="if path not taken" >I</span>if (err.errors) {
-    let message = <span class="cstat-no" title="statement not covered" >err.errors.map(<span class="fstat-no" title="function not covered" >(e</span>l) =&gt; <span class="cstat-no" title="statement not covered" >el.message)</span>;</span>
-<span class="cstat-no" title="statement not covered" >    res.status(400).json({ message });</span>
-  } else <span class="missing-if-branch" title="if path not taken" >I</span>if (err.raw) {
+  } else <span class="missing-if-branch" title="else path not taken" >E</span>if (err.errors) {
+    let message = err.errors.map((el) =&gt; el.message);
+    res.status(400).json({ message });
+  } else <span class="cstat-no" title="statement not covered" >if (err.raw) {</span>
     const { statusCode, message, param, code } = <span class="cstat-no" title="statement not covered" >err.raw</span>
     let msg = <span class="cstat-no" title="statement not covered" >message</span>
 <span class="cstat-no" title="statement not covered" >    if (!code || code !== "parameter_missing") { <span class="cstat-no" title="statement not covered" >msg = `${param}\n${message}` </span>}</span>
 <span class="cstat-no" title="statement not covered" >    if (code === 'resource_missing') { <span class="cstat-no" title="statement not covered" >msg = message.split(':')[0] </span>}</span>
 <span class="cstat-no" title="statement not covered" >    res.status(statusCode).json({ message: msg });</span>
-  } else <span class="missing-if-branch" title="if path not taken" >I</span>if (err.code) {
-<span class="cstat-no" title="statement not covered" >    res.status(err.code).json({ message: err.msg });</span>
-  } else <span class="missing-if-branch" title="if path not taken" >I</span>if (err.response) {
+  } else <span class="cstat-no" title="statement not covered" >if (err.response) {</span>
     const { status, data } = <span class="cstat-no" title="statement not covered" >err.response</span>
 <span class="cstat-no" title="statement not covered" >    if (status === 404) {</span>
       const message = <span class="cstat-no" title="statement not covered" >"Not Found"</span>
@@ -141,8 +136,10 @@
       const message = <span class="cstat-no" title="statement not covered" >data.errors[0].messages</span>
 <span class="cstat-no" title="statement not covered" >      res.status(status).json({ message })</span>
     }
+  } else <span class="cstat-no" title="statement not covered" >if (err.name === "JsonWebTokenError") {</span>
+<span class="cstat-no" title="statement not covered" >    res.status(403).json({ message: "Invalid signature. You don't have permission to access this page" })</span>
   } else {
-    res.status(500).json({ message: "Internal Server Error" });
+<span class="cstat-no" title="statement not covered" >    res.status(500).json({ message: "Internal Server Error" });</span>
   }
 };
 &nbsp;
@@ -154,7 +151,7 @@ module.exports = errorHandler;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Tue Jun 29 2021 21:27:35 GMT+0700 (Indochina Time)
+                at Wed Jun 30 2021 14:46:35 GMT+0700 (Western Indonesia Time)
             </div>
         </div>
         <script src="../../prettify.js"></script>

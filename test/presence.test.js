@@ -1,17 +1,39 @@
 const request = require('supertest');
 const app = require('../app');
-const { Customer, Appointment, PresenceList } = require('../models')
-
+const { Customer, Appointment, User, PresenceList } = require('../models')
+const {sign, verify} = require('../helpers/jwt')
+const PRIVATE_KEY = process.env.JWT_SECRET
+let adminToken = ''
+let customerToken = ''
 let CustomerId
 let appointmentId
 let PresenceListId
 
 beforeAll( done=>{
-    Customer.create({
+    User.create({
+        username: "test",
+        password: "1234567",
+        role: "admin",
+        profilePicture: "testes"
+    })
+    .then( user => {
+        adminToken = sign ({id: user.id, username: user.username, role: user.role})
+        return User.create({
+            username: "test2",
+            password: "1234567",
+            role: "customer",
+            profilePicture: "testes"
+        })
+    })
+    .then( user => {
+        customerToken = sign ({id: user.id, username: user.username, role: user.role})
+        return Customer.create({
         name: 'Solihin',
         email: 'test@email.com',
         address: 'Bandung',
-        phoneNumber: '081320225578'
+        phoneNumber: '081320225578',
+        UserId: user.id 
+        })
     })
         .then( customer => {
             CustomerId = customer.id
@@ -59,6 +81,9 @@ afterAll(done => {
         .then(_=> { return PresenceList.destroy({truncate: { cascade: true }}) 
         })
         .then(_=> {
+            return User.destroy({truncate: { cascade: true }})
+        })
+        .then(_=> {
             done()
         })
         .catch(err => {done(err)})
@@ -68,7 +93,7 @@ describe('Read presence | Success Case', ()=>{
     it('should send an object with array', done => {
         request(app)
             .get('/presence')
-            //.set('access_token', adminToken)
+            .set('access_token', adminToken)
             .end((err, res)=>{
                 if(err) return done(err)
                 expect(res.status).toBe(200)
@@ -82,14 +107,42 @@ describe('Create Presence | Success Case', ()=>{
     it('should send an object with key: data', done => {
         request(app)
             .post('/presence')
-            .send(tempData)
-            //.set('access_token', adminToken)
+            .send({
+                dropperName: "dadang suhardi",
+                pickupperName: "dadang suhardi",
+                pickupTime: "17:00",
+                presenceDate: "2021-09-03",
+                AppointmentId: appointmentId
+            })
+            .set('access_token', adminToken)
             .end((err, res)=>{
                 if(err) return done(err)
                 expect(res.status).toBe(201)
-                expect(res.body).toHaveProperty('id', expect.any(Number))
-                expect(res.body).toHaveProperty('dropperName', expect.any(String))
-                expect(res.body).toHaveProperty('pickupperName', expect.any(String))
+                expect(res.body.insertedData).toHaveProperty('id', expect.any(Number))
+                expect(res.body.insertedData).toHaveProperty('dropperName', expect.any(String))
+                expect(res.body.insertedData).toHaveProperty('pickupperName', expect.any(String))
+                expect(res.body).toHaveProperty('token', expect.any(String))
+                done()
+            })
+    })
+})
+
+describe('Create Presence | failed Case', ()=>{
+    it('should send an object with message', done => {
+        request(app)
+            .post('/presence')
+            .send({
+                dropperName: "dadang suhardi",
+                pickupperName: "dadang suhardi",
+                pickupTime: "17:00",
+                presenceDate: "2021-09-03",
+                AppointmentId: appointmentId
+            })
+            .set('access_token', adminToken)
+            .end((err, res)=>{
+                if(err) return done(err)
+                expect(res.status).toBe(400)
+                expect(res.body).toHaveProperty('message', 'Sudah absen untuk hari ini')
                 done()
             })
     })
@@ -99,11 +152,12 @@ describe('Create Presence | dropperName not send to server', ()=>{
     it('should send a message inside array Dropper name can not null', done => {
         request(app)
             .post('/presence')
+            .set('access_token', adminToken)
             .send({
                 //dropperName: "dadang suhardi",
                 pickupperName: "dadang suhardi",
                 pickupTime: "17:00",
-                presenceDate: "2021-09-01",
+                presenceDate: "2021-09-02",
                 AppointmentId: appointmentId
             })
             //.set('access_token', adminToken)
@@ -120,11 +174,12 @@ describe('Create Presence | dropperName not filed', ()=>{
     it('should send a message inside array Dropper name can not be empty ', done => {
         request(app)
             .post('/presence')
+            .set('access_token', adminToken)
             .send({
                 dropperName: "",
                 pickupperName: "dadang suhardi",
                 pickupTime: "17:00",
-                presenceDate: "2021-09-01",
+                presenceDate: "2021-09-02",
                 AppointmentId: appointmentId
             })
             //.set('access_token', adminToken)
@@ -137,22 +192,23 @@ describe('Create Presence | dropperName not filed', ()=>{
     })
 })
 
-describe('Create presence | input presenceDate date before', ()=>{
-    it('should send a message inside array presenceDate must be equal or greater than today', done => {
+describe('Create presence | input presenceDate invalid format', ()=>{
+    it('should send a message', done => {
         request(app)
             .post('/presence')
+            .set('access_token', adminToken)
             .send({
                 dropperName: "dadang suhardi",
                 pickupperName: "dadang suhardi",
                 pickupTime: "17:00",
-                presenceDate: "2021-06-01",
+                presenceDate: "tes satu dua",
                 AppointmentId: appointmentId
             })
             //.set('access_token', adminToken)
             .end((err, res)=>{
                 if(err) return done(err)
                 expect(res.status).toBe(400)
-                expect(res.body).toHaveProperty('message', ['presenceDate must be equal or greater than today'])
+                expect(res.body).toHaveProperty('message', 'presenceDate format must be date')
                 done()
             })
     })

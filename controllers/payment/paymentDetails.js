@@ -3,8 +3,10 @@ const { PaymentDetail } = require('../../models')
 module.exports = class Controller {
 
   static async createPaymentDetail(req, res, next) {
-    const { quantity, price, AppointmentId, PaymentMethodId } = req.body
-    const input = { quantity, price, AppointmentId, PaymentMethodId }
+    const { quantity, price, AppointmentId, InvoiceId } = req.body
+    const { role } = req.user
+    const status = role === 'admin' ? 'paid' : 'pending'
+    const input = { quantity, price, AppointmentId, InvoiceId, status }
     try {
       const paymentDetail = await PaymentDetail.create(input)
       !paymentDetail && next({ status: 400, message: 'Bad Request' })
@@ -34,4 +36,5 @@ module.exports = class Controller {
       next(error)
     }
   }
+
 }

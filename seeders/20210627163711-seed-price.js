@@ -8,38 +8,38 @@ module.exports = {
      * Example:
      */
    await queryInterface.bulkInsert('Prices', [{
-     category: "toddler",
-     package: "daily",
+     category: "Toddler",
+     package: "Daily",
      price: 200000,
      createdAt: new Date(),
      updatedAt: new Date()
    },{
-    category: "toddler",
-    package: "weekly",
+    category: "Toddler",
+    package: "Weekly",
     price: 1300000,
     createdAt: new Date(),
     updatedAt: new Date()
   },{
-    category: "toddler",
-    package: "monthly",
+    category: "Toddler",
+    package: "Monthly",
     price: 6000000,
     createdAt: new Date(),
     updatedAt: new Date()
   },{
-    category: "infant",
-    package: "daily",
+    category: "Infant",
+    package: "Daily",
     price: 200000,
     createdAt: new Date(),
     updatedAt: new Date()
   },{
-    category: "infant",
-    package: "weekly",
+    category: "Infant",
+    package: "Weekly",
     price: 200000,
     createdAt: new Date(),
     updatedAt: new Date()
   },{
-    category: "infant",
-    package: "monthly",
+    category: "Infant",
+    package: "Monthly",
     price: 200000,
     createdAt: new Date(),
     updatedAt: new Date()

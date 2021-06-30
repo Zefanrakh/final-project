@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Appointment.belongsTo(models.Customer)
+      Appointment.belongsTo(models.Price)
       Appointment.hasMany(models.PresenceList)
       Appointment.hasOne(models.PaymentDetail)
 
@@ -71,6 +72,7 @@ module.exports = (sequelize, DataTypes) => {
           msg: "status must be sudah bayar or belum bayar or cancel",
         },
       },
+      PriceId: DataTypes.INTEGER,
       note: {
         type: DataTypes.STRING,
         allowNull: false,
