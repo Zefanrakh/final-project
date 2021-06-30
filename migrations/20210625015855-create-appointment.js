@@ -37,11 +37,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
-      quantity:{
-        allowNull: false,
-        type: Sequelize.INTEGER
-      },
-      total:{
+      PriceId:{
         allowNull: false,
         type: Sequelize.INTEGER
       },

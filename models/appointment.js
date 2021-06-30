@@ -71,6 +71,7 @@ module.exports = (sequelize, DataTypes) => {
           msg: "status must be sudah bayar or belum bayar or cancel",
         },
       },
+      PriceId: DataTypes.INTEGER,
       note: {
         type: DataTypes.STRING,
         allowNull: false,

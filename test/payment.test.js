@@ -4,8 +4,6 @@ const { sign } = require('../helpers/jwt')
 const { User, Appointment, Customer } = require('../models')
 const axios = require('axios')
 
-// const uuid = axios.get('https://www.uuidgenerator.net/api/version1')
-const externalID = 'd0175664-dbbf-4649-897f-3344258675ab'
 let customerAccessToken, customerId, appointmentId, invoiceId
 
 const userData = {
@@ -24,6 +22,8 @@ let appointmentData = {
   startDate: '2021-07-06',
   endDate: '2021-07-08',
   status: 'Active',
+  quantity: 1,
+  PriceId: 2,
   childCategory: 'Toddler',
   packageCategory: 'Monthly',
   note: 'Allergic to Nuts'
@@ -85,7 +85,7 @@ const invoiceInput = {
 
 const VApayment = {
   amount: 500000,
-  externalID
+  externalID: Math.random().toString(36).substring(2, 12)
 }
 
 const xenditExpectedVA = {
@@ -537,7 +537,7 @@ describe('Virtual Account Payment | Failed', () => {
   })
 
   it('Missing Amount', done => {
-    const missingAmount = { externalID: 'demo-1234' }
+    const missingAmount = { externalID: Math.random().toString(36).substring(2, 12) }
     const expected = ['"amount" is required']
     request(app)
       .post('/checkout/virtual-account/pay')
@@ -554,7 +554,7 @@ describe('Virtual Account Payment | Failed', () => {
   it('Not Found | External ID', done => {
     const invalidExternalID = {
       amount: 500000,
-      externalID: 'wrongID1234'
+      externalID: Math.random().toString(36).substring(2, 12)
     }
     const expected = "Not Found"
     request(app)
