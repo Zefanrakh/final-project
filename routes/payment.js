@@ -3,6 +3,6 @@ const router = require('express').Router()
 
 router.post('/', createPaymentDetail)
 router.get('/', getPaymentDetails)
-router.get('/:id', getPaymentDetailsByAppointment)
+router.get('/appointment/:id', getPaymentDetailsByAppointment)
 
 module.exports = router

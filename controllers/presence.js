@@ -21,7 +21,6 @@ class Controller {
                 res.status(201).json({insertedData, token})
             }
         } catch (error) {
-            console.log(error,"tess=====>");
             next(error)
         }
     }
