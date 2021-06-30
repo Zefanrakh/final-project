@@ -46,13 +46,7 @@ class UserController {
           username: user.username,
           role: user.role,
         });
-        const payload = {
-          username: user.username,
-          profilePicture: user.profilePicture,
-          role: user.role,
-          CustomerId: user.Customer.id,
-        };
-        res.status(201).json({ user: payload, access_token });
+        res.status(201).json({ user, access_token });
       })
       .catch((err) => {
         next(err);
@@ -105,13 +99,7 @@ class UserController {
       },
     })
       .then((user) => {
-        const payload = {
-          username: user.username,
-          profilePicture: user.profilePicture,
-          role: user.role,
-          CustomerId: user.Customer.id,
-        };
-        res.status(200).json({ user: payload });
+        res.status(200).json({ user });
       })
       .catch((err) => {
         next(err);
