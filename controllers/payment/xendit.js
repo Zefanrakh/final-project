@@ -1,5 +1,5 @@
 const xenditInstance = require("../../helpers/xendit")
-const { Invoice: InvoiceModel, PaymentDetail } = require('../../models')
+const { Invoice: InvoiceModel, PaymentDetail, Appointment } = require('../../models')
 const callbackToken = process.env.CALLBACK_TOKEN
 const xenditSecretKey = process.env.XENDIT_SECRET_KEY
 
@@ -81,13 +81,14 @@ module.exports = class Controller {
       const selectedInvoice = await InvoiceModel.findOne({ where: { externalID } })
       const invoiceId = selectedInvoice.dataValues.id
       const updatePayment = await PaymentDetail.update({ status }, { where: { InvoiceId: invoiceId }, returning: true })
+      const appointmentId = updatePayment[1][0].appointmentId
+      if (status === 'EXPIRED') {
+        const updatedAppointment = await Appointment.update({ status }, { Where: { id: appointmentId } })
+      }
       const updatedInvoice = await InvoiceModel.update(input, { where: { externalID }, returning: true })
       res.status(200).json({ message: 'Success' })
     } catch (error) {
-      console.log(error);
       next(error)
     }
-
   }
-
 }

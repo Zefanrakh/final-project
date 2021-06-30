@@ -3,8 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "jest": {
+    "testPathIgnorePatterns": [
+      "./controllers/appointment"
+    ]
+  },
   "scripts": {
-    "test": "jest --detectOpenHandles --runInBand --verbose --forceExit  --collectCoverage",
+    "test": "jest --detectOpenHandles --forceExit --runInBand --collectCoverage",
     "dev": "nodemon bin/http",
     "start": "node bin/http"
   },
@@ -30,6 +35,7 @@
     "nodemon": "^2.0.7",
     "pg": "^8.6.0",
     "sequelize": "^6.6.2",
+    "socket.io": "^2.3.0",
     "stripe": "^8.157.0",
     "xendit-node": "^1.13.0"
   },

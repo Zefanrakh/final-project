@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Appointment.belongsTo(models.Customer)
+      Appointment.belongsTo(models.Price)
       Appointment.hasMany(models.PresenceList)
       Appointment.hasOne(models.PaymentDetail)
 

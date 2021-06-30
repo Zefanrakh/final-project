@@ -4,6 +4,7 @@ const { sign } = require("../helpers/jwt");
 
 class UserController {
   static register(req, res, next) {
+    let userId;
     const {
       name,
       username,
@@ -21,6 +22,7 @@ class UserController {
       role: "customer",
     })
       .then((user) => {
+        userId = user.id;
         return Customer.create({
           name,
           email,
@@ -30,20 +32,19 @@ class UserController {
         });
       })
       .then((customer) => {
-        return Customer.findOne({
+        return User.findOne({
           where: {
-            id: customer.id,
+            id: userId,
           },
           include: {
-            model: User,
-            attributes: ["id", "username", "role", "profilePicture"],
+            model: Customer,
           },
         });
       })
       .then((user) => {
         const access_token = sign({
-          username: user.User.username,
-          role: user.User.role,
+          username: user.username,
+          role: user.role,
         });
         res.status(201).json({ user, access_token });
       })
@@ -59,6 +60,9 @@ class UserController {
       where: {
         username,
       },
+      include: {
+        model: Customer,
+      },
     })
       .then((user) => {
         if (user) {
@@ -70,11 +74,7 @@ class UserController {
             });
             res.status(200).json({
               access_token,
-              user: {
-                username: user.username,
-                profilePicture: user.profilePicture,
-                role: user.role,
-              },
+              user,
             });
           } else {
             next({ status: 404, message: "Wrong username or password" });
@@ -89,16 +89,21 @@ class UserController {
   }
 
   static getCurrentUser(req, res, next) {
+    console.log("sampe kesini");
     const { username } = req.user;
     User.findOne({
       where: {
         username,
+      },
+      include: {
+        model: Customer,
       },
     })
       .then((user) => {
         res.status(200).json({ user });
       })
       .catch((err) => {
+        console.log(err);
         next(err);
       });
   }

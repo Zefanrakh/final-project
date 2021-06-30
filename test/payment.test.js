@@ -1,8 +1,7 @@
 const request = require('supertest')
 const app = require('../app')
 const { sign } = require('../helpers/jwt')
-const { User, Appointment, Customer } = require('../models')
-const axios = require('axios')
+const { User, Appointment, Customer, Invoice } = require('../models')
 
 let customerAccessToken, customerId, appointmentId, invoiceId
 
@@ -22,11 +21,21 @@ let appointmentData = {
   startDate: '2021-07-06',
   endDate: '2021-07-08',
   status: 'Active',
-  quantity: 1,
   PriceId: 2,
   childCategory: 'Toddler',
   packageCategory: 'Monthly',
   note: 'Allergic to Nuts'
+}
+
+let externalID = Math.random().toString(36).substring(2, 12)
+let invoiceData = {
+  amount: 500000,
+  description: 'Monthly - Toddler',
+  expiryDate: '2021-07-05 20:42:59',
+  invoiceUrl: 'https://checkout-staging.xendit.co/web/60dc811fa301da00d1968c2c',
+  externalID,
+  paymentMethod: '',
+  status: 'PENDING'
 }
 
 beforeAll((done) => {
@@ -52,6 +61,10 @@ beforeAll((done) => {
     })
     .then(newAppointment => {
       appointmentId = newAppointment.id
+      return Invoice.create(invoiceData)
+    })
+    .then(newInvoice => {
+      invoiceId = newInvoice.id
       done()
     })
     .catch(error => done(error))
@@ -83,26 +96,7 @@ const invoiceInput = {
   description: 'Monthly - Toddler'
 }
 
-const VApayment = {
-  amount: 500000,
-  externalID: Math.random().toString(36).substring(2, 12)
-}
-
-const xenditExpectedVA = {
-  is_closed: true,
-  status: 'PENDING',
-  currency: 'IDR',
-  owner_id: '60d69701f91bf66b7f41c770',
-  external_id: expect.any(String),
-  bank_code: 'BCA',
-  merchant_code: '10766',
-  name: 'SMART DAYCARE',
-  account_number: expect.any(Number),
-  expected_amount: 500000,
-  is_single_use: true,
-  expiration_date: expect.any(String),
-  id: expect.any(String)
-}
+let VAPaymentExternalID
 
 const stripeExpectedSuccess = {
   id: expect.any(String),
@@ -167,7 +161,7 @@ const stripeLineItems = {
 
 const callbackPayload = {
   "id": "579c8d61f23fa4ca35e52da4",
-  "external_id": "invoice_123124123",
+  "external_id": externalID,
   "user_id": "5781d19b2e2385880609791c",
   "is_high": true,
   "payment_method": "BANK_TRANSFER",
@@ -290,7 +284,7 @@ describe('Stripe Checkout | Failed', () => {
   })
 
   it('Invalid Request Error | Invalid Payment Type', done => {
-    const expected = "payment_method_types[0]\nInvalid payment_method_types[0]: must be one of alipay, card, ideal, fpx, bacs_debit, bancontact, giropay, p24, eps, sofort, sepa_debit, grabpay, afterpay_clearpay, or acss_debit"
+    const expected = "payment_method_types[0]\nInvalid payment_method_types[0]: must be one of alipay, card, ideal, fpx, bacs_debit, bancontact, giropay, p24, eps, sofort, sepa_debit, grabpay, afterpay_clearpay, acss_debit, wechat_pay, boleto, or oxxo"
     const invalidPaymentType = { ...stripePaymentData, paymentType: 'cardi' }
     request(app)
       .post('/checkout/stripe')
@@ -386,7 +380,14 @@ describe('Create Virtual Account | Success', () => {
       .end((err, res) => {
         if (err) return done(err)
         expect(res.status).toBe(200)
-        expect(res.body).toEqual(expect.objectContaining(xenditExpectedVA))
+        expect(res.body).toHaveProperty('status', 'PENDING')
+        expect(res.body).toHaveProperty('currency', 'IDR')
+        expect(res.body).toHaveProperty('owner_id', '60d69701f91bf66b7f41c770')
+        expect(res.body).toHaveProperty('bank_code', 'BCA')
+        expect(res.body).toHaveProperty('name', 'SMART DAYCARE')
+        expect(res.body).toHaveProperty('is_single_use', true)
+        VAPaymentExternalID = res.body.external_id
+        console.log(V);
         done()
       })
   })
@@ -468,44 +469,13 @@ describe('Create Virtual Account | Failed', () => {
         done()
       })
   })
-
-  it('Invalid Request Error | Invalid Name', done => {
-    const invalidName = { ...VAccountInput, name: 0 }
-    const expected = 'There was an error with the format submitted to the server.'
-    request(app)
-      .post('/checkout/virtual-account')
-      .send(invalidName)
-      .set('access_token', customerAccessToken)
-      .end((err, res) => {
-        if (err) return done(err)
-        expect(res.status).toBe(400)
-        expect(res.body).toHaveProperty('message', expected)
-        done()
-      })
-  })
-
-  // it.only('Invalid Request Error | Missing Name Field', done => {
-  //   const missingName = (({ name, ...key }) => key)(VAccountInput)
-  //   const expected = 'There was an error with the format submitted to the server.'
-  //   request(app)
-  //     .post('/checkout/virtual-account')
-  //     .send(missingName)
-  //     .set('access_token', customerAccessToken)
-  //     .end((err, res) => {
-  //       if (err) return done(err)
-  //       console.log(res.body,"<<<< ini missing name field");
-  //       expect(res.status).toBe(400)
-  //       expect(res.body).toHaveProperty('message', expected)
-  //       done()
-  //     })
-  // })
 })
 
-describe('Virtual Account Payment | Success', () => {
+describe.only('Virtual Account Payment | Success', () => {
   it('Success Payment', done => {
-    const expected = {
-      "message": `Payment for the Fixed VA with external id e6bba81a-d80c-11eb-b8bc-0242ac130003 is currently being processed. Please ensure that you have set a callback URL for VA payments via Dashboard Settings and contact us if you do not receive a VA payment callback within the next 5 mins.`,
-      "status": "COMPLETED"
+    const VApayment = {
+      amount: 500000,
+      externalID: '80a719e0-d9c1-11eb-b8bc-0242ac130003'
     }
     request(app)
       .post('/checkout/virtual-account/pay')
@@ -513,21 +483,43 @@ describe('Virtual Account Payment | Success', () => {
       .set('access_token', customerAccessToken)
       .end((err, res) => {
         if (err) return done(err)
+        console.log(res.body,"<><><>,.");
         expect(res.status).toBe(200)
-        expect(res.body).toEqual(expect.objectContaining(expected))
+
         done()
       })
   })
 })
 
-
 describe('Virtual Account Payment | Failed', () => {
 
   it('Not Authorized | No Access Token', done => {
     const expected = "You must login first"
+    const VApayment = {
+      amount: 500000,
+      externalID: VAPaymentExternalID
+    }
     request(app)
       .post('/checkout/virtual-account/pay')
       .send(VApayment)
+      .end((err, res) => {
+        if (err) return done(err)
+        expect(res.status).toBe(403)
+        expect(res.body).toHaveProperty('message', expected)
+        done()
+      })
+  })
+
+  it('Not Authorized | No Access Token', done => {
+    const expected = "Invalid signature. You don't have permission to access this page"
+    const VApayment = {
+      amount: 500000,
+      externalID: VAPaymentExternalID
+    }
+    request(app)
+      .post('/checkout/virtual-account/pay')
+      .send(VApayment)
+      .set('access_token',invalidAccessToken)
       .end((err, res) => {
         if (err) return done(err)
         expect(res.status).toBe(403)
@@ -570,29 +562,19 @@ describe('Virtual Account Payment | Failed', () => {
   })
 })
 
-// describe.only('Invoice Callback | Success', () => {
-//   it('Callback Token Verified', done => {
-//     const headers = {
-//       host: 'ce3e094d0cec.ngrok.io',
-//       'content-length': '555',
-//       'content-type': 'application/json',
-//       'x-callback-token': 'w4w9e8lTj493oGXjngWILFJWPyPzdUEHDAmrkV7tHvtrLojP',
-//     }
-//     const expected = 'Success'
-//     request(app)
-//       .post('/callback')
-//       .send(callbackPayload)
-//       .set(headers)
-//       .end((err, res) => {
-//         console.log(err,"rttt");
-//         console.log(res.body,"<,<<<");
-//         if (err) return done(err)
-//         expect(res.status).toBe(200)
-//         expect(res.body).toHaveProperty('message', expected)
-//         done()
-//       })
-//   })
-// })
+describe('Invoice Callback | Failed', () => {
+  it('Data Not Found | ', done => {
+    request(app)
+      .post('/callback')
+      .send(callbackPayload)
+      .end((err, res) => {
+        if (err) return done(err)
+        expect(res.status).toBe(500)
+        expect(res.body).toHaveProperty('message', 'Internal Server Error')
+        done()
+      })
+  })
+})
 
 
 describe('Create Invoice | Success', () => {
@@ -615,23 +597,98 @@ describe('Create Invoice | Success', () => {
 })
 
 describe('Create Invoice | Failed', () => {
-
-  it('| Invalid Amount', done => {
+  it('Invalid Request| Invalid Amount', done => {
     const invalidAmount = {
       amount: '',
       email: 'karina@gmail.com'
     }
+    const expected = 'There was an error with the format submitted to the server.'
     request(app)
       .post('/checkout/invoice')
       .set('access_token', customerAccessToken)
       .send(invalidAmount)
       .end((err, res) => {
         if (err) return done(err)
-        console.log(res.body);
-        expect(res.status).toBe(200)
+        expect(res.status).toBe(400)
+        expect(res.body).toHaveProperty('message', expected)
+        done()
+      })
+  })
+})
+
+describe('Create Payment Details | Success', () => {
+  it('Return Payment Details', done => {
+    const paymentInput = {
+      quantity: 2,
+      price: 250000,
+      AppointmentId: appointmentId,
+      InvoiceId: invoiceId
+    }
+    request(app)
+      .post('/paymentDetails')
+      .send(paymentInput)
+      .set('access_token', customerAccessToken)
+      .end((err, res) => {
+        if (err) return done(err)
+        expect(res.status).toBe(201)
+        expect(res.body).toEqual(expect.any(Object))
         done()
       })
   })
 })
 
 
+describe('Create Payment Details | Failed', () => {
+  it('Not Authorized | No Access token', done => {
+    const paymentInput = {
+      quantity: 2,
+      price: 250000,
+      AppointmentId: appointmentId,
+      InvoiceId: invoiceId
+    }
+    const expected = "You must login first"
+    request(app)
+      .post('/paymentDetails')
+      .send(paymentInput)
+      .end((err, res) => {
+        if (err) return done(err)
+        expect(res.status).toBe(403)
+        expect(res.body).toHaveProperty('message', expected)
+        done()
+      })
+  })
+
+  it('Not Authorized | Invalid Access token', done => {
+    const paymentInput = {
+      quantity: 2,
+      price: 250000,
+      AppointmentId: appointmentId,
+      InvoiceId: invoiceId
+    }
+    const expected = "Invalid signature. You don't have permission to access this page"
+    request(app)
+      .post('/paymentDetails')
+      .send(paymentInput)
+      .set('access_token', invalidAccessToken)
+      .end((err, res) => {
+        if (err) return done(err)
+        expect(res.status).toBe(403)
+        expect(res.body).toHaveProperty('message', expected)
+        done()
+      })
+  })
+})
+
+describe('Get Payment Detail by Appointment | Success', () => {
+  it('One Payment Details | By Appointment', done => {
+    request(app)
+      .get(`/paymentDetails/appointment/${appointmentId}`)
+      .set('access_token', customerAccessToken)
+      .end((err, res) => {
+        if (err) return done(err)
+        expect(res.status).toBe(200)
+        expect(res.body).toEqual(expect.any(Object))
+        done()
+      })
+  })
+})

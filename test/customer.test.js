@@ -2,51 +2,62 @@ const request = require('supertest')
 const { sequelize } = require('../models/index')
 const { queryInterface } = sequelize
 const app = require('../app')
-const {Customer} = require('../models/index')
-let id=0;
+const { Customer, Appointment, User } = require('../models')
+const {sign, verify} = require('../helpers/jwt')
+const PRIVATE_KEY = process.env.JWT_SECRET
+let adminToken = ''
+let customerToken = ''
+
+let CustomerId
 
 beforeAll((done)=>{
   // createAdmin()
-  request(app)
-  .post('/customers')
-  .send({
-      name:'Rizky',
-      address:"Jl.Patimura,No 4",
-      email:"Rizky@aol.com",
-      phoneNumber:"081269327604"
-      })
-  .then(customer=>{
-    id = customer.body.customer.id
-      done()
-  }).catch(err=>{
-      done(err)
+  User.create({
+    username: "test",
+    password: "1234567",
+    role: "admin",
+    profilePicture: "testes"
   })
+  .then( user => {
+      adminToken = sign ({id: user.id, username: user.username, role: user.role})
+      return User.create({
+          username: "test2",
+          password: "1234567",
+          role: "customer",
+          profilePicture: "testes"
+      })
+  })
+  .then( user => {
+      customerToken = sign ({id: user.id, username: user.username, role: user.role})
+      return Customer.create({
+          name: 'Solihin',
+          email: 'test2@email.com',
+          address: 'Bandung',
+          phoneNumber: '081320225578',
+          UserId: user.id
+      })
+  })
+  .then( customer => {
+      CustomerId = customer.id
+      done()
+  })
+  .catch(err => {done(err)})
 })
 
 afterAll((done)=>{
-  if(process.env.NODE_ENV === "test"){
-    // Customer.destroy({ truncate: {cascade:true, restartIdentity:true}})
-    //   .then(()=>{
-    //       done()
-    //   })
-    //   .catch(err=>{
-    //       done(err)
-    //   })
-    queryInterface.bulkDelete("Customers", null, { truncate: true, restartIdentity:true, cascade:true }) 
-      .then(()=>{
-        done()
-    })
-    .catch(err=>{
-        done(err)
-    })
-  }
+  Customer.destroy({truncate: { cascade: true }})
+  .then(_=> {
+      return User.destroy({truncate: { cascade: true }})
+  })
+  .then(_=> { done() })
+  .catch(err => {done(err)})
 })
 
 describe ('Read / Customer', function(){
   it('Success Get All Customer, code:200', function(done){
       request (app)
       .get(`/customers`)
-      // .set('access_token',adminToken)
+      .set('access_token', adminToken)
       .then(response=>{
           let {status, body} = response
           expect(status).toBe(200)
@@ -55,13 +66,25 @@ describe ('Read / Customer', function(){
           done(err)
       })
   })
+
+  it('fail Get All Customer, code:403', function(done){
+    request (app)
+    .get(`/customers`)
+    .then(response=>{
+        let {status, body} = response
+        expect(status).toBe(403)
+        done()
+    }).catch(err=>{ 
+        done(err)
+    })
+  })
 })
 
 describe('Post / Customer', function() {
   it('Success Create Customer with Code:201', function(done) {
     request(app)
       .post('/customers')
-      .set('Accept', 'application/json')
+      .set('access_token', adminToken)
       .expect('Content-Type', /json/)
       .send({
         name:'Samuel',
@@ -82,7 +105,7 @@ describe('Post / Customer', function() {
   it('Empty Reuired Field, code:400', function(done) {
     request(app)
       .post('/customers')
-      .set('Accept', 'application/json')
+      .set('access_token', adminToken)
       .expect('Content-Type', /json/)
       .send({
         name:'',
@@ -104,7 +127,7 @@ describe('Post / Customer', function() {
   it('Empty Name Reuired Field, code:400', function(done) {
     request(app)
       .post('/customers')
-      .set('Accept', 'application/json')
+      .set('access_token', adminToken)
       .expect('Content-Type', /json/)
       .send({
         name:'',
@@ -126,7 +149,7 @@ describe('Post / Customer', function() {
   it('Invalid Email Format, code:400', function(done) {
     request(app)
       .post('/customers')
-      .set('Accept', 'application/json')
+      .set('access_token', adminToken)
       .expect('Content-Type', /json/)
       .send({
         name:'Samuel',
@@ -147,7 +170,7 @@ describe('Post / Customer', function() {
   it('Invalid Number Format, code:400', function(done) {
     request(app)
       .post('/customers')
-      .set('Accept', 'application/json')
+      .set('access_token', adminToken)
       .expect('Content-Type', /json/)
       .send({
         name:'Samuel',
@@ -168,10 +191,10 @@ describe('Post / Customer', function() {
 }); 
 
 describe ('Delete /  Customer', function(){
-  console.log(id, "<<<<<<<<<<<<<<<<<")
   it('Success Delete Customer, Code:200', function(done){
       request(app)
-      .delete(`/customers/${id}`)
+      .delete(`/customers/${CustomerId}`)
+      .set('access_token', adminToken)
       .then(response=>{
           let {status,body} = response
           expect(status).toBe(200)

@@ -1,5 +1,4 @@
 const { PaymentDetail } = require('../../models')
-
 module.exports = class Controller {
 
   static async createPaymentDetail(req, res, next) {
@@ -19,7 +18,6 @@ module.exports = class Controller {
   static async getPaymentDetails(req, res, next) {
     try {
       const paymentDetails = await PaymentDetail.findAll()
-      !paymentDetails.length && next({ status: 404, message: 'Data Not Found' })
       res.status(200).json(paymentDetails)
     } catch (error) {
       next(error)
@@ -30,11 +28,9 @@ module.exports = class Controller {
     const { id } = req.params
     try {
       const paymentDetail = await PaymentDetail.findOne({ where: { AppointmentId: id } })
-      !paymentDetail && next({ status: 404, message: "Data Not Found" })
       res.status(200).json(paymentDetail)
     } catch (error) {
       next(error)
     }
   }
-
 }
