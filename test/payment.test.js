@@ -4,8 +4,8 @@ const { sign } = require('../helpers/jwt')
 const { User, Appointment, Customer } = require('../models')
 const axios = require('axios')
 
-const uuid = axios.get('https://www.uuidgenerator.net/api/version1')
-const externalID = uuid.data
+// const uuid = axios.get('https://www.uuidgenerator.net/api/version1')
+const externalID = 'd0175664-dbbf-4649-897f-3344258675aa'
 let customerAccessToken, customerId, appointmentId, invoiceId
 
 const userData = {
@@ -594,15 +594,49 @@ describe('Virtual Account Payment | Failed', () => {
 // })
 
 
-// decribe('Create Invoice | Success', () => {
-//   it('Generate an invoice', done => {
-//     const expected = {}
+describe('Create Invoice | Success', () => {
+  it('Generate an invoice', done => {
+    request(app)
+      .post('/checkout/invoice')
+      .set('access_token', customerAccessToken)
+      .send(invoiceInput)
+      .end((err, res) => {
+        if (err) return done(err)
+        expect(res.status).toBe(200)
+        expect(res.body).toHaveProperty('id', expect.any(Number))
+        expect(res.body).toHaveProperty('externalID', expect.any(String))
+        expect(res.body).toHaveProperty('amount', invoiceInput.amount)
+        expect(res.body).toHaveProperty('description', 'SMART DAYCARE')
+        expect(res.body).toHaveProperty('invoiceUrl', expect.any(String))
+        // expect(res.body).toEqual(expect.objectContaining({
+        //   id:expect.any(Number),
+        //   externalID:expect.any(String),
+        //   amount: invoiceInput.amount,
+        //   description:'SMART DAYCARE',
+        //   invoiceUrl:expect.any(String),
+        // }))
+        done()
+      })
+  })
+})
 
-//   })
-// })
-
-
-
-
+describe('Create Invoice | Failed', () => {
+  const invalidAmount = {
+    amount: '',
+    email: 'karina@gmail.com'
+  }
+  it('| Invalid Amount', done => {
+    request(app)
+      .post('/checkout/invoice')
+      .set('access_token', customerAccessToken)
+      .send(invalidAmount)
+      .end((err, res) => {
+        if (err) return done(err)
+        console.log(res.body);
+        expect(res.status).toBe(200)
+        done()
+      })
+  })
+})
 
 

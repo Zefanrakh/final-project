@@ -15,7 +15,7 @@ const inv = new Invoice(invoiceSpecificOptions);
 module.exports = class Controller {
 
   static async createVirtualAccount(req, res, next) {
-    // const uuid = await axios.get('https://www.uuidgenerator.net/api/version1')
+    const uuid = await axios.get('https://www.uuidgenerator.net/api/version1')
     const { bankCode, expectedAmount: expectedAmt } = req.body
     const VAInput = { bankCode, name: 'SMART DAYCARE', externalID: uuid.data, isClosed: true, expectedAmt, isSingleUse: true }
     try {
@@ -44,26 +44,29 @@ module.exports = class Controller {
   }
 
   static async createInvoice(req, res, next) {
+    const { role } = req.user
     const uuid = await axios.get('https://www.uuidgenerator.net/api/version1')
     const externalID = uuid.data
-    const { amount, email: payerEmail } = req.body
-    const input = { amount, payerEmail, externalID, description: "SMART DAYCARE" }
+    const { amount, email: payerEmail, description } = req.body
+    const input = { amount, payerEmail, externalID, description }
     try {
       const newInvoice = await inv.createInvoice(input)
       const {
         external_id: externalID,
-        status,
         amount,
+        status,
         payer_email: payerEmail,
         description,
         expiry_date: expiryDate,
         invoice_url: invoiceUrl
       } = newInvoice
-
-      const invoiceInput = { externalID, status, amount, description, expiryDate, invoiceUrl, payerEmail }
+      let invoiceInput = { externalID, status, amount, description, expiryDate, invoiceUrl, payerEmail }
+      if (role === 'admin') {
+        invoiceInput = (({ expiryDate, invoiceUrl, ...key }) => key)(invoiceInput)
+        invoiceInput.status = 'Paid'
+      }
       const dbInvoice = await InvoiceModel.create(invoiceInput)
-      console.log(dbInvoice);
-      res.status(200).json(dbInvoice)
+      res.status(200).json(dbInvoice.dataValues)
     } catch (error) {
       next(error)
     }
@@ -74,6 +77,8 @@ module.exports = class Controller {
     const input = { status, paymentMethod }
 
     try {
+      const selectedInvoice = await InvoiceModel.findOne({ where: { externalID } })
+      const updatePayment = await PaymentDetail.update()
       const updatedInvoice = await InvoiceModel.update(input, { where: { externalID }, returning: true })
       res.status(200).json({ message: 'Success' })
     } catch (error) {
