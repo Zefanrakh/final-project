@@ -55,7 +55,7 @@ class UserController {
     User.findOne({
       where: {
         username,
-      },
+      }, include: {model: Customer}
     })
       .then((user) => {
         if (user) {
@@ -71,6 +71,7 @@ class UserController {
                 username: user.username,
                 profilePicture: user.profilePicture,
                 role: user.role,
+                CustomerId: user.Customer.id
               },
             });
           } else {
@@ -91,10 +92,16 @@ class UserController {
     User.findOne({
       where: {
         username,
-      },
+      }, include: {model: Customer}
     })
       .then((user) => {
-        res.status(200).json({ user });
+        const payload = {
+          username: user.username,
+          profilePicture: user.profilePicture,
+          role: user.role,
+          CustomerId: user.Customer.id
+        }
+        res.status(200).json({user: payload});
       })
       .catch((err) => {
         next(err);

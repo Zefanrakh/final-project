@@ -72,8 +72,6 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       PriceId: DataTypes.INTEGER,
-      quantity: DataTypes.INTEGER,
-      total: DataTypes.INTEGER,
       note: {
         type: DataTypes.STRING,
         allowNull: false,
