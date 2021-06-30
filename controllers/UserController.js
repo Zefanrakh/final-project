@@ -89,7 +89,6 @@ class UserController {
   }
 
   static getCurrentUser(req, res, next) {
-    console.log("sampe kesini");
     const { username } = req.user;
     User.findOne({
       where: {
@@ -103,7 +102,6 @@ class UserController {
         res.status(200).json({ user });
       })
       .catch((err) => {
-        console.log(err);
         next(err);
       });
   }

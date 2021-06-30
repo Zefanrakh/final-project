@@ -34,12 +34,11 @@ const customerAppointmentAuthorization = async (req, res, next) => {
         model: Appointment,
       },
     });
-    console.log(customer, "masuk sisni");
     const targetAppointment = customer.Appointments.find((appointment) => {
       appointment.id === Number(req.params.id);
     });
     if (targetAppointment) next();
-    else throw { status: 401, message: "You are not authorized" };
+    else next({ status: 401, message: "You are not authorized" })
   } catch (err) {
     next(err);
   }

@@ -27,6 +27,20 @@ let appointmentData = {
   note: 'Allergic to Nuts'
 }
 
+const headers = {
+  host: 'ce3e094d0cec.ngrok.io',
+  'content-length': '515',
+  'content-type': 'application/json',
+  'x-callback-token': 'w4w9e8lTj493oGXjngWILFJWPyPzdUEHDAmrkV7tHvtrLojP',
+  'x-datadog-parent-id': '1046107251562546901',
+  'x-datadog-sampled': '1',
+  'x-datadog-sampling-priority': '0',
+  'x-datadog-trace-id': '3194560024495966477',
+  'x-forwarded-for': '52.89.130.89',
+  'x-forwarded-proto': 'https',
+  'accept-encoding': 'gzip'
+}
+
 let externalID = Math.random().toString(36).substring(2, 12)
 let invoiceData = {
   amount: 500000,
@@ -387,7 +401,6 @@ describe('Create Virtual Account | Success', () => {
         expect(res.body).toHaveProperty('name', 'SMART DAYCARE')
         expect(res.body).toHaveProperty('is_single_use', true)
         VAPaymentExternalID = res.body.external_id
-        console.log(V);
         done()
       })
   })
@@ -471,7 +484,7 @@ describe('Create Virtual Account | Failed', () => {
   })
 })
 
-describe.only('Virtual Account Payment | Success', () => {
+describe('Virtual Account Payment | Success', () => {
   it('Success Payment', done => {
     const VApayment = {
       amount: 500000,
@@ -483,9 +496,8 @@ describe.only('Virtual Account Payment | Success', () => {
       .set('access_token', customerAccessToken)
       .end((err, res) => {
         if (err) return done(err)
-        console.log(res.body,"<><><>,.");
         expect(res.status).toBe(200)
-
+        expect(res.body).toEqual(expect.any(Object))
         done()
       })
   })
@@ -519,7 +531,7 @@ describe('Virtual Account Payment | Failed', () => {
     request(app)
       .post('/checkout/virtual-account/pay')
       .send(VApayment)
-      .set('access_token',invalidAccessToken)
+      .set('access_token', invalidAccessToken)
       .end((err, res) => {
         if (err) return done(err)
         expect(res.status).toBe(403)
@@ -562,15 +574,28 @@ describe('Virtual Account Payment | Failed', () => {
   })
 })
 
+
 describe('Invoice Callback | Failed', () => {
-  it('Data Not Found | ', done => {
+
+  it('Not Authorized | Invalid Token ', done => {
+    request(app)
+      .post('/callback')
+      .set('headers', headers)
+      .end((err, res) => {
+        if (err) return done(err)
+        expect(res.status).toBe(403)
+        expect(res.body).toHaveProperty('message', expect.any(String))
+        done()
+      })
+  })
+  it('Not Authorized | No Access Token', done => {
     request(app)
       .post('/callback')
       .send(callbackPayload)
       .end((err, res) => {
         if (err) return done(err)
-        expect(res.status).toBe(500)
-        expect(res.body).toHaveProperty('message', 'Internal Server Error')
+        expect(res.status).toBe(403)
+        expect(res.body).toHaveProperty('message', "Invalid signature. You don't have permission to access this page")
         done()
       })
   })

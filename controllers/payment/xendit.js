@@ -68,7 +68,6 @@ module.exports = class Controller {
       const dbInvoice = await InvoiceModel.create(invoiceInput)
       res.status(200).json(dbInvoice.dataValues)
     } catch (error) {
-      console.log(error)
       next(error)
     }
   }

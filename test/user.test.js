@@ -87,8 +87,6 @@ describe("Check existing email", () => {
         email: "theveryfirstuniquetesting@mail.com",
       })
       .then((res) => {
-        console.log("INI EMAIL CHECK");
-
         expect(res.status).toBe(200);
         expect(res.body).toHaveProperty("user", expect.any(Object));
         expect(res.body.user).toHaveProperty("id", expect.any(Number));
@@ -114,8 +112,6 @@ describe("Check existing username", () => {
         username: "notthefirstmostuniqueusername",
       })
       .then((res) => {
-        console.log(res.body, ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-
         expect(res.status).toBe(200);
         expect(res.body).toHaveProperty("user", null);
         done();
