@@ -488,7 +488,7 @@ describe('Virtual Account Payment | Success', () => {
   it('Success Payment', done => {
     const VApayment = {
       amount: 500000,
-      externalID: '80a719e0-d9c1-11eb-b8bc-0242ac130003'
+      externalID: VAPaymentExternalID
     }
     request(app)
       .post('/checkout/virtual-account/pay')
@@ -713,6 +713,45 @@ describe('Get Payment Detail by Appointment | Success', () => {
         if (err) return done(err)
         expect(res.status).toBe(200)
         expect(res.body).toEqual(expect.any(Object))
+        done()
+      })
+  })
+})
+
+describe('Get Payment Detail by Appointment | Failed', () => {
+  it('Internal Server Error | Invalid Input syntax', done => {
+    request(app)
+      .get(`/paymentDetails/appointment/xx`)
+      .set('access_token', customerAccessToken)
+      .end((err, res) => {
+        if (err) return done(err)
+        expect(res.status).toBe(500)
+        expect(res.body).toHaveProperty("message", "Internal Server Error")
+        done()
+      })
+  })
+
+  it('Not Authorized | Invalid Access token', done => {
+    const expected = "Invalid signature. You don't have permission to access this page"
+    request(app)
+      .get(`/paymentDetails/appointment/${appointmentId}`)
+      .set('access_token', invalidAccessToken)
+      .end((err, res) => {
+        if (err) return done(err)
+        expect(res.status).toBe(403)
+        expect(res.body).toHaveProperty('message', expected)
+        done()
+      })
+  })
+
+  it('Not Authorized | No Access token', done => {
+    const expected = "You must login first"
+    request(app)
+      .get(`/paymentDetails/appointment/${appointmentId}`)
+      .end((err, res) => {
+        if (err) return done(err)
+        expect(res.status).toBe(403)
+        expect(res.body).toHaveProperty('message', expected)
         done()
       })
   })
