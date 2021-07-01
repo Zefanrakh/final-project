@@ -16,7 +16,7 @@ class Controller {
             }else{
                 const insertedData = await PresenceList.create({dropperName, pickupperName, pickupTime, presenceDate, AppointmentId })
                 const token = sign({id: insertedData.id, presenceDate: insertedData.presenceDate, pickupperName: insertedData.pickupperName})
-                const link = `http://localhost:3000/viewer/${category}?token=${token}`
+                const link = `https://day-care-32c02.web.app/viewer/${category}?token=${token}`
                 sendEmail(customerEmail, link)
                 res.status(201).json({insertedData, token})
             }

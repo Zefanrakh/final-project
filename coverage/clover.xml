@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1625130345171" clover="3.2.0">
-  <project timestamp="1625130345172" name="All files">
-    <metrics statements="483" coveredstatements="446" conditionals="95" coveredconditionals="79" methods="73" coveredmethods="65" elements="651" coveredelements="590" complexity="0" loc="483" ncloc="483" packages="7" files="35" classes="35"/>
+<coverage generated="1625134441948" clover="3.2.0">
+  <project timestamp="1625134441948" name="All files">
+    <metrics statements="486" coveredstatements="450" conditionals="93" coveredconditionals="79" methods="74" coveredmethods="66" elements="653" coveredelements="595" complexity="0" loc="486" ncloc="486" packages="7" files="36" classes="36"/>
     <package name="final-project">
       <metrics statements="13" coveredstatements="13" conditionals="2" coveredconditionals="2" methods="0" coveredmethods="0"/>
       <file name="app.js" path="/home/dude/hacktive8/phase3/DAYCARE/final-project/app.js">
@@ -186,7 +186,7 @@
       </file>
     </package>
     <package name="final-project.controllers.payment">
-      <metrics statements="91" coveredstatements="72" conditionals="10" coveredconditionals="5" methods="12" coveredmethods="9"/>
+      <metrics statements="90" coveredstatements="72" conditionals="8" coveredconditionals="5" methods="12" coveredmethods="9"/>
       <file name="paymentDetails.js" path="/home/dude/hacktive8/phase3/DAYCARE/final-project/controllers/payment/paymentDetails.js">
         <metrics statements="20" coveredstatements="15" conditionals="4" coveredconditionals="2" methods="3" coveredmethods="2"/>
         <line num="1" count="7" type="stmt"/>
@@ -232,7 +232,7 @@
         <line num="36" count="1" type="stmt"/>
       </file>
       <file name="xendit.js" path="/home/dude/hacktive8/phase3/DAYCARE/final-project/controllers/payment/xendit.js">
-        <metrics statements="53" coveredstatements="39" conditionals="4" coveredconditionals="1" methods="5" coveredmethods="3"/>
+        <metrics statements="52" coveredstatements="39" conditionals="2" coveredconditionals="1" methods="5" coveredmethods="3"/>
         <line num="1" count="7" type="stmt"/>
         <line num="2" count="7" type="stmt"/>
         <line num="3" count="7" type="stmt"/>
@@ -281,15 +281,14 @@
         <line num="79" count="0" type="stmt"/>
         <line num="80" count="0" type="stmt"/>
         <line num="81" count="0" type="stmt"/>
-        <line num="82" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="82" count="0" type="stmt"/>
         <line num="83" count="0" type="stmt"/>
-        <line num="85" count="0" type="stmt"/>
+        <line num="84" count="0" type="stmt"/>
         <line num="86" count="0" type="stmt"/>
-        <line num="88" count="0" type="stmt"/>
       </file>
     </package>
     <package name="final-project.helpers">
-      <metrics statements="23" coveredstatements="20" conditionals="2" coveredconditionals="0" methods="4" coveredmethods="3"/>
+      <metrics statements="27" coveredstatements="24" conditionals="2" coveredconditionals="0" methods="5" coveredmethods="4"/>
       <file name="bcrypt.js" path="/home/dude/hacktive8/phase3/DAYCARE/final-project/helpers/bcrypt.js">
         <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
         <line num="1" count="7" type="stmt"/>
@@ -300,17 +299,24 @@
         <line num="9" count="2" type="stmt"/>
         <line num="12" count="7" type="stmt"/>
       </file>
-      <file name="nodemailer.js" path="/home/dude/hacktive8/phase3/DAYCARE/final-project/helpers/nodemailer.js">
-        <metrics statements="9" coveredstatements="6" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="1"/>
+      <file name="emailtemplate.js" path="/home/dude/hacktive8/phase3/DAYCARE/final-project/helpers/emailtemplate.js">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="7" type="stmt"/>
-        <line num="3" count="7" type="stmt"/>
-        <line num="13" count="7" type="stmt"/>
-        <line num="14" count="1" type="stmt"/>
-        <line num="25" count="1" type="stmt"/>
-        <line num="26" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="27" count="0" type="stmt"/>
-        <line num="29" count="0" type="stmt"/>
-        <line num="34" count="7" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="971" count="7" type="stmt"/>
+      </file>
+      <file name="nodemailer.js" path="/home/dude/hacktive8/phase3/DAYCARE/final-project/helpers/nodemailer.js">
+        <metrics statements="10" coveredstatements="7" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="1"/>
+        <line num="1" count="7" type="stmt"/>
+        <line num="2" count="7" type="stmt"/>
+        <line num="4" count="7" type="stmt"/>
+        <line num="14" count="7" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="21" count="1" type="stmt"/>
+        <line num="22" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="30" count="7" type="stmt"/>
       </file>
       <file name="stripe.js" path="/home/dude/hacktive8/phase3/DAYCARE/final-project/helpers/stripe.js">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
