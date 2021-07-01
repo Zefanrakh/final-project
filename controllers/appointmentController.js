@@ -47,7 +47,6 @@ class Controller {
                 res.status(201).json(insertedData)
             }
         } catch (error) {
-            console.log(error ,'==================>>>');
             next(error);
         }
     }
@@ -79,7 +78,7 @@ class Controller {
             if(updatedData[0] == 1){
                 res.status(200).json(updatedData)
             }else{
-                throw({status: 404, message: 'Data not found'})
+                next({status: 404, message: 'Data not found'})
             }
         } catch (error) {
             next(error);

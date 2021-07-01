@@ -26,17 +26,17 @@ const authentication = async (req, res, next) => {
   }
 };
 
-// const callbackTokenAuth = async (req, res, next) => {
-//   const headers = req.headers
-//   try {
-//     !headers && next({ status: 401, message: 'Unauthorized Access' })
-//     const token = Object.values(headers)[3]
-//     const matchedToken = callbackToken === token
-//     !matchedToken && next({ status: 403, message: "Invalid signature. You don't have permission to access this page" })
-//     next()
-//   } catch (error) {
-//     next(error)
-//   }
-// }
+const callbackTokenAuth = async (req, res, next) => {
+  const headers = req.headers
+  try {
+    !headers && next({ status: 401, message: 'Unauthorized Access' })
+    const token = Object.values(headers)[3]
+    const matchedToken = callbackToken === token
+    !matchedToken && next({ status: 403, message: "Invalid signature. You don't have permission to access this page" })
+    next()
+  } catch (error) {
+    next(error)
+  }
+}
 
-module.exports = authentication
+module.exports = { authentication, callbackTokenAuth }

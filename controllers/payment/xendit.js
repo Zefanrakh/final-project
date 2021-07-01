@@ -8,9 +8,6 @@ const { VirtualAcc, Invoice, EWallet } = xenditInstance
 const vaSpecificOptions = {}
 const va = new VirtualAcc(vaSpecificOptions)
 
-const ewalletSpecificOptions = {};
-const ew = new EWallet(ewalletSpecificOptions);
-
 const invoiceSpecificOptions = {};
 const inv = new Invoice(invoiceSpecificOptions);
 module.exports = class Controller {
@@ -70,7 +67,6 @@ module.exports = class Controller {
       const dbInvoice = await InvoiceModel.create(invoiceInput)
       res.status(200).json(dbInvoice.dataValues)
     } catch (error) {
-      console.log(error)
       next(error)
     }
   }

@@ -91,7 +91,6 @@ class UserController {
   }
 
   static getCurrentUser(req, res, next) {
-    console.log("sampe kesini");
     const { username } = req.user;
     User.findOne({
       where: {
