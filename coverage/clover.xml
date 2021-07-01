@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1625116571946" clover="3.2.0">
-  <project timestamp="1625116571946" name="All files">
-    <metrics statements="484" coveredstatements="447" conditionals="95" coveredconditionals="79" methods="73" coveredmethods="65" elements="652" coveredelements="591" complexity="0" loc="484" ncloc="484" packages="7" files="35" classes="35"/>
+<coverage generated="1625130345171" clover="3.2.0">
+  <project timestamp="1625130345172" name="All files">
+    <metrics statements="483" coveredstatements="446" conditionals="95" coveredconditionals="79" methods="73" coveredmethods="65" elements="651" coveredelements="590" complexity="0" loc="483" ncloc="483" packages="7" files="35" classes="35"/>
     <package name="final-project">
       <metrics statements="13" coveredstatements="13" conditionals="2" coveredconditionals="2" methods="0" coveredmethods="0"/>
       <file name="app.js" path="/home/dude/hacktive8/phase3/DAYCARE/final-project/app.js">
@@ -186,7 +186,7 @@
       </file>
     </package>
     <package name="final-project.controllers.payment">
-      <metrics statements="92" coveredstatements="73" conditionals="10" coveredconditionals="5" methods="12" coveredmethods="9"/>
+      <metrics statements="91" coveredstatements="72" conditionals="10" coveredconditionals="5" methods="12" coveredmethods="9"/>
       <file name="paymentDetails.js" path="/home/dude/hacktive8/phase3/DAYCARE/final-project/controllers/payment/paymentDetails.js">
         <metrics statements="20" coveredstatements="15" conditionals="4" coveredconditionals="2" methods="3" coveredmethods="2"/>
         <line num="1" count="7" type="stmt"/>
@@ -232,7 +232,7 @@
         <line num="36" count="1" type="stmt"/>
       </file>
       <file name="xendit.js" path="/home/dude/hacktive8/phase3/DAYCARE/final-project/controllers/payment/xendit.js">
-        <metrics statements="54" coveredstatements="40" conditionals="4" coveredconditionals="1" methods="5" coveredmethods="3"/>
+        <metrics statements="53" coveredstatements="39" conditionals="4" coveredconditionals="1" methods="5" coveredmethods="3"/>
         <line num="1" count="7" type="stmt"/>
         <line num="2" count="7" type="stmt"/>
         <line num="3" count="7" type="stmt"/>
@@ -259,34 +259,33 @@
         <line num="32" count="3" type="stmt"/>
         <line num="38" count="1" type="stmt"/>
         <line num="40" count="2" type="stmt"/>
-        <line num="41" count="2" type="stmt"/>
+        <line num="45" count="2" type="stmt"/>
         <line num="46" count="2" type="stmt"/>
         <line num="47" count="2" type="stmt"/>
         <line num="48" count="2" type="stmt"/>
         <line num="49" count="2" type="stmt"/>
         <line num="50" count="2" type="stmt"/>
         <line num="51" count="2" type="stmt"/>
-        <line num="52" count="2" type="stmt"/>
+        <line num="60" count="1" type="stmt"/>
         <line num="61" count="1" type="stmt"/>
-        <line num="62" count="1" type="stmt"/>
-        <line num="63" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="62" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="63" count="0" type="stmt"/>
         <line num="64" count="0" type="stmt"/>
-        <line num="65" count="0" type="stmt"/>
+        <line num="66" count="1" type="stmt"/>
         <line num="67" count="1" type="stmt"/>
-        <line num="68" count="1" type="stmt"/>
-        <line num="70" count="1" type="stmt"/>
+        <line num="69" count="1" type="stmt"/>
+        <line num="74" count="0" type="stmt"/>
         <line num="75" count="0" type="stmt"/>
-        <line num="76" count="0" type="stmt"/>
+        <line num="77" count="0" type="stmt"/>
         <line num="78" count="0" type="stmt"/>
         <line num="79" count="0" type="stmt"/>
         <line num="80" count="0" type="stmt"/>
         <line num="81" count="0" type="stmt"/>
-        <line num="82" count="0" type="stmt"/>
-        <line num="83" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="84" count="0" type="stmt"/>
+        <line num="82" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="83" count="0" type="stmt"/>
+        <line num="85" count="0" type="stmt"/>
         <line num="86" count="0" type="stmt"/>
-        <line num="87" count="0" type="stmt"/>
-        <line num="89" count="0" type="stmt"/>
+        <line num="88" count="0" type="stmt"/>
       </file>
     </package>
     <package name="final-project.helpers">

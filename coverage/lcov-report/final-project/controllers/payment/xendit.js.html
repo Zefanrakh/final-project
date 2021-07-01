@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">72.73% </span>
+                <span class="strong">72.22% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>40/55</span>
+                <span class='fraction'>39/54</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">74.07% </span>
+                <span class="strong">73.58% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>40/54</span>
+                <span class='fraction'>39/53</span>
             </div>
         
             
@@ -188,7 +188,6 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -237,6 +236,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const xenditInstance = require("../../helpers/xendit")
@@ -300,10 +300,10 @@ module.exports = class Controller {
         invoice_url: invoiceUrl
       } = newInvoice
       let invoiceInput = { externalID, status, amount, description, expiryDate, invoiceUrl, payerEmail }
-      if (role === 'admin') {
-      <span class="missing-if-branch" title="if path not taken" >I</span>  invoiceInput = (({ expiryDate, invoiceUrl, ...key }) =&gt; key)(invoiceInput)
-<span class="cstat-no" title="statement not covered" >        invoiceInput.sta<span class="fstat-no" title="function not covered" >tu</span>s = 'Paid'<span class="cstat-no" title="statement not covered" ></span></span>
-      }<span class="cstat-no" title="statement not covered" ></span>
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (role === 'admin') {
+<span class="cstat-no" title="statement not covered" >        invoiceInput = (<span class="fstat-no" title="function not covered" >({</span> expiryDate, invoiceUrl, ...key }) =&gt; <span class="cstat-no" title="statement not covered" >key)</span>(invoiceInput)</span>
+<span class="cstat-no" title="statement not covered" >        invoiceInput.status = 'Paid'</span>
+      }
       const dbInvoice = await InvoiceModel.create(invoiceInput)
       res.status(200).json(dbInvoice.dataValues)
     } catch (error) {
@@ -311,23 +311,23 @@ module.exports = class Controller {
     }
   }
 &nbsp;
-  static async invoiceCallback(req, res, next) {
-<span class="fstat-no" title="function not covered" ></span>    const { status, payment_channel: paymentMethod, external_id: externalID } = req.body
-    const input = { status, paymentMethod }<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" ></span>
-    try {
-<span class="cstat-no" title="statement not covered" >      const selectedInvoice = await InvoiceModel.findOne({ where: { externalID } })</span>
-      const invoiceId = select<span class="cstat-no" title="statement not covered" >edInvoice.dataValues.id</span>
-      const updatePaymen<span class="cstat-no" title="statement not covered" >t = await PaymentDetail.update</span>({ status }, { where: { InvoiceId: invoiceId }, returning: true })
+<span class="fstat-no" title="function not covered" >  st</span>atic async invoiceCallback(req, res, next) {
+    const { status, payment_channel: paymentMethod, external_id: externalID } = <span class="cstat-no" title="statement not covered" >req.body</span>
+    const input = <span class="cstat-no" title="statement not covered" >{ status, paymentMethod }</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    try {</span>
+      const selectedInvoice = <span class="cstat-no" title="statement not covered" >await InvoiceModel.findOne({ where: { externalID } })</span>
+      const invoiceId = <span class="cstat-no" title="statement not covered" >selectedInvoice.dataValues.id</span>
+      const updatePayment = <span class="cstat-no" title="statement not covered" >await PaymentDetail.update({ status }, { where: { InvoiceId: invoiceId }, returning: true })</span>
       const appointmentId = <span class="cstat-no" title="statement not covered" >updatePayment[1][0].appointmentId</span>
-      if (status === 'EXPIRE<span class="cstat-no" title="statement not covered" >D') {</span>
-<span class="cstat-no" title="statement not covered" >        const updatedAppointment = await Appointment.update({ status }, { Where: { id: appointmentId } })</span>
-      }<span class="cstat-no" title="statement not covered" ></span>
-      const updatedInvoice = await InvoiceModel.update(input, { where: { externalID }, returning: true })
-      res.status(200).json({ <span class="cstat-no" title="statement not covered" >message: 'Success' })</span>
-    } <span class="cstat-no" title="statement not covered" >catch (error) {</span>
-      next(error)
-    }<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >      if (status === 'EXPIRED') {</span>
+        const updatedAppointment = <span class="cstat-no" title="statement not covered" >await Appointment.update({ status }, { Where: { id: appointmentId } })</span>
+      }
+      const updatedInvoice = <span class="cstat-no" title="statement not covered" >await InvoiceModel.update(input, { where: { externalID }, returning: true })</span>
+<span class="cstat-no" title="statement not covered" >      res.status(200).json({ message: 'Success' })</span>
+    } catch (error) {
+<span class="cstat-no" title="statement not covered" >      next(error)</span>
+    }
   }
 }
 &nbsp;</pre></td></tr></table></pre>
@@ -337,7 +337,7 @@ module.exports = class Controller {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Thu Jul 01 2021 12:16:11 GMT+0700 (Western Indonesia Time)
+                at Thu Jul 01 2021 16:05:44 GMT+0700 (Western Indonesia Time)
             </div>
         </div>
         <script src="../../../prettify.js"></script>
