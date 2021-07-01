@@ -24,7 +24,6 @@ const customerAuthorization = async (req, res, next) => {
   }
 };
 
-<<<<<<< HEAD
 const customerAppointmentAuthorization = async (req, res, next) => {
   try {
     const customer = await Customer.findOne({
@@ -45,8 +44,6 @@ const customerAppointmentAuthorization = async (req, res, next) => {
   }
 };
 
-=======
->>>>>>> development
 module.exports = {
   adminAuthorization,
   customerAuthorization

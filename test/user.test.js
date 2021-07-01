@@ -114,16 +114,9 @@ describe("Check existing username", () => {
   it("Return null if the username doesn't exist", (done) => {
     request(app)
       .post("/user/checkexistusername")
-<<<<<<< HEAD
-      .send({
-        username: "notthefirstmostuniqueusername",
-      })
-      .then((res) => {
-=======
       .send({ username: "notthefirstmostuniqueusername" })
       .end((err, res)=>{
         if(err) return done(err)
->>>>>>> development
         expect(res.status).toBe(200);
         expect(res.body).toHaveProperty("user", null);
         done();
