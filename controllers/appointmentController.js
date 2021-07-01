@@ -18,10 +18,10 @@ class Controller {
             const formatedEndDate = new Date(endDate)
             const dateNow = new Date()
             if(formatedStartDate == "Invalid Date" || formatedEndDate == "Invalid Date"){
-                throw({status: 400, message: 'End Date or start date format must be date'})
+                next({status: 400, message: 'End Date or start date format must be date'})
             }else{
                 if( formatedStartDate < dateNow || formatedEndDate < dateNow){
-                    throw({status: 400, message: 'start date or end date mus be equal or greater than today'})
+                    next({status: 400, message: 'start date or end date mus be equal or greater than today'})
                 }
                 if(formatedEndDate < formatedStartDate){
                     throw({status: 400, message: 'start date must be greater then end date'})
@@ -47,7 +47,6 @@ class Controller {
                 res.status(201).json(insertedData)
             }
         } catch (error) {
-            console.log(error ,'==================>>>');
             next(error);
         }
     }

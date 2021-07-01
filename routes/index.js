@@ -9,11 +9,11 @@ const paymentRouter = require('./payment')
 const priceRouter = require('./price')
 const searchRouter = require("./search");
 
-const authentication = require("../middlewares/authentication");
+const { authentication, callbackTokenAuth } = require("../middlewares/authentication");
 const { invoiceCallback } = require("../controllers/payment/xendit");
 
 router.use("/user", UserRouter);
-router.post('/callback', invoiceCallback)
+router.post('/callback', callbackTokenAuth, invoiceCallback)
 
 router.use("/", authentication);
 

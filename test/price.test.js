@@ -63,7 +63,6 @@ describe('Fetch Price List | Failed', () => {
       .end((err, res) => {
         if (err) return done(err)
         expect(res.status).toBe(403)
-        console.log(res.body);
         expect(res.body).toHaveProperty('message', expected)
         done()
       })
@@ -78,7 +77,6 @@ describe('Fetch One Price by Id | Success', () => {
       .end((err, res) => {
         if (err) return done(err)
         expect(res.status).toBe(200)
-        console.log(res.body, "<.,.");
         expect(res.body).toEqual(expect.any(Object))
         done()
       })

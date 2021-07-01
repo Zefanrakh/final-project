@@ -81,17 +81,15 @@ class UserController {
             next({ status: 404, message: "Wrong username or password" });
           }
         } else {
-          next({ status: 404, message: "Wrong username or password" });
+          throw({ status: 404, message: "Wrong username or password" });
         }
       })
       .catch((err) => {
-        console.log(err,'==============>');
         next(err);
       });
   }
 
   static getCurrentUser(req, res, next) {
-    console.log("sampe kesini");
     const { username } = req.user;
     User.findOne({
       where: {
