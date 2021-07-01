@@ -1,10 +1,22 @@
-const router = require('express').Router()
-const Controller = require('../controllers/appointmentController')
+const router = require("express").Router();
+const Controller = require("../controllers/appointmentController");
+const {
+  adminAuthorization,
+  customerAuthorization
+} = require("../middlewares/authorization");
 
-router.get('/', Controller.getAppointment)
-router.post('/', Controller.postAppointment)
-router.get('/:id', Controller.getAppointmentById)
-router.patch('/:id', Controller.patchAppointment)
-router.get('/customer/:customerId', Controller.getAppointmentByCustomerId)
+router.get("/", adminAuthorization, Controller.getAppointment);
+router.post("/", Controller.postAppointment);
 
-module.exports = router
+router.patch(
+  "/:id",
+  Controller.patchAppointment
+);
+
+router.get(
+  "/customer/:CustomerId",
+  customerAuthorization,
+  Controller.getAppointmentByCustomerId
+);
+
+module.exports = router;

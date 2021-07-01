@@ -1,0 +1,38 @@
+[
+  {
+    "method":"Virtual Account",
+    "name":"BCA"
+  },
+  {
+    "method":"Virtual Account",
+    "name":"BNI"
+  },
+  {
+    "method":"Virtual Account",
+    "name":"BRI"
+  },
+  {
+    "method":"Virtual Account",
+    "name":"PERMATA"
+  },
+  {
+    "method":"Virtual Account",
+    "name":"MANDIRI"
+  },
+  {
+    "method":"eWallet",
+    "name":"OVO"
+  },
+  {
+    "method":"eWallet",
+    "name":"DANA"
+  },
+  {
+    "method":"eWallet",
+    "name":"SHOPEEPAY"
+  },
+  {
+    "method":"eWallet",
+    "name":"LINKAJA"
+  }
+]

@@ -41,14 +41,6 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER
       },
-      quantity:{
-        allowNull: false,
-        type: Sequelize.INTEGER
-      },
-      total:{
-        allowNull: false,
-        type: Sequelize.INTEGER
-      },
       note: {
         allowNull: false,
         type: Sequelize.STRING
