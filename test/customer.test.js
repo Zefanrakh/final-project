@@ -204,4 +204,18 @@ describe ('Delete /  Customer', function(){
           done(err)
       })
   })
+
+  it('Failed Delete Customer, Code:404', function(done){
+    request(app)
+    .delete(`/customers/99`)
+    .set('access_token', adminToken)
+    .then(response=>{
+        let {status,body} = response
+        expect(status).toBe(404)
+        expect(body).toHaveProperty("message", "data not found")
+        done()
+    }).catch(err=>{
+        done(err)
+    })
+})
 });

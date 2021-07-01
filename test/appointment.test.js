@@ -122,8 +122,8 @@ describe('Create Appointment | Success Case', ()=>{
                 startDate: "2021-12-01", 
                 endDate: "2021-12-02", 
                 status: "sudah bayar", 
-                childCategory: "toddler",
-                packageCategory: "daily",
+                childCategory: "Toddler",
+                packageCategory: "Daily",
                 note: "anak saya suka makan siang agak lama",
             })
             .set('access_token', adminToken)
@@ -149,8 +149,8 @@ describe('Create Appointment | faild case access token', ()=>{
                 startDate: "2021-12-01", 
                 endDate: "2021-12-02", 
                 status: "sudah bayar", 
-                childCategory: "toddler",
-                packageCategory: "daily",
+                childCategory: "Toddler",
+                packageCategory: "Daily",
                 note: "anak saya suka makan siang agak lama",
             })
             .end((err, res)=>{
@@ -174,8 +174,8 @@ describe('Create Appointment | childName not send to server', ()=>{
                 startDate: "2021-09-01", 
                 endDate: "2021-09-02", 
                 status: "sudah bayar", 
-                childCategory: "toddler",
-                packageCategory: "daily",
+                childCategory: "Toddler",
+                packageCategory: "Daily",
                 note: "anak saya suka makan siang agak lama",
             })
             //.set('access_token', adminToken)
@@ -200,8 +200,8 @@ describe('Create Appointment | childName not filed', ()=>{
                 startDate: "2021-09-01", 
                 endDate: "2021-09-02", 
                 status: "sudah bayar", 
-                childCategory: "toddler",
-                packageCategory: "daily",
+                childCategory: "Toddler",
+                packageCategory: "Daily",
                 note: "anak saya suka makan siang agak lama",
             })
             //.set('access_token', adminToken)
@@ -226,8 +226,8 @@ describe('Create Appointment | input start date before', ()=>{
                 startDate: "2021-03-01", 
                 endDate: "2021-09-02", 
                 status: "sudah bayar", 
-                childCategory: "toddler",
-                packageCategory: "daily", 
+                childCategory: "Toddler",
+                packageCategory: "Daily", 
                 note: "anak saya suka makan siang agak lama",
             })
             //.set('access_token', adminToken)
@@ -252,8 +252,8 @@ describe('Create Appointment | input end date date before start date', ()=>{
                 startDate: "2021-10-03", 
                 endDate: "2021-10-02", 
                 status: "sudah bayar", 
-                childCategory: "toddler",
-                packageCategory: "daily", 
+                childCategory: "Toddler",
+                packageCategory: "Daily", 
                 note: "anak saya suka makan siang agak lama",
             })
             //.set('access_token', adminToken)
@@ -278,8 +278,8 @@ describe('Create Appointment | input with same data', ()=>{
                 startDate: "2021-12-01", 
                 endDate: "2021-12-02", 
                 status: "sudah bayar", 
-                childCategory: "toddler",
-                packageCategory: "daily", 
+                childCategory: "Toddler",
+                packageCategory: "Daily", 
                 note: "anak saya suka makan siang agak lama",
             })
             //.set('access_token', adminToken)
@@ -304,8 +304,8 @@ describe('Create Appointment | input date with number', ()=>{
                 startDate: "", 
                 endDate: "2021-08-02", 
                 status: "sudah bayar", 
-                childCategory: "toddler",
-                packageCategory: "daily",
+                childCategory: "Toddler",
+                packageCategory: "Daily",
                 note: "anak saya suka makan siang agak lama",
             })
             //.set('access_token', adminToken)
@@ -330,8 +330,8 @@ describe('Create Appointment | input end date before today', ()=>{
                 startDate: "2021-04-01", 
                 endDate: "2021-06-02", 
                 status: "sudah bayar", 
-                childCategory: "toddler",
-                packageCategory: "daily",
+                childCategory: "Toddler",
+                packageCategory: "Daily",
                 note: "anak saya suka makan siang agak lama",
             })
             //.set('access_token', adminToken)
@@ -356,8 +356,8 @@ describe('Create Appointment | input end date with number', ()=>{
                 startDate: "2021-08-02", 
                 endDate: "", 
                 status: "sudah bayar", 
-                childCategory: "toddler",
-                packageCategory: "daily",
+                childCategory: "Toddler",
+                packageCategory: "Daily",
                 note: "anak saya suka makan siang agak lama",
             })
             //.set('access_token', adminToken)
@@ -382,8 +382,8 @@ describe('Create Appointment | input age with no falid number', ()=>{
                 startDate: "2021-09-02", 
                 endDate: "2021-09-03", 
                 status: "sudah bayar", 
-                childCategory: "toddler",
-                packageCategory: "daily",
+                childCategory: "Toddler",
+                packageCategory: "Daily",
                 note: "anak saya suka makan siang agak lama",
             })
             //.set('access_token', adminToken)
@@ -406,8 +406,8 @@ describe('Create Appointment | input age with no falid number', ()=>{
                 startDate: "2021-09-02", 
                 endDate: "2021-09-03", 
                 status: "sudah bayar", 
-                childCategory: "toddler",
-                packageCategory: "daily",
+                childCategory: "Toddler",
+                packageCategory: "Daily",
                 note: "anak saya suka makan siang agak lama",
             })
             //.set('access_token', adminToken)

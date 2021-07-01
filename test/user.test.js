@@ -1,12 +1,14 @@
 const request = require("supertest");
 const app = require("../app");
 const { User, Customer } = require("../models");
+const {sign} = require('../helpers/jwt')
 
 let firstUserId;
 let secondUserId;
 let firstCustomerId;
 let secondCustomerId;
 let access_token;
+let token;
 
 beforeAll((done) => {
   const defaultData = {
@@ -23,6 +25,7 @@ beforeAll((done) => {
     role: "customer",
   })
     .then((user) => {
+      token = sign ({id: user.id, username: user.username, role: user.role})
       firstUserId = user.id;
       return Customer.create({
         email: "theveryfirstuniquetesting@mail.com",
@@ -80,48 +83,11 @@ describe("Check existing email", () => {
       });
   });
 
-  it("Return a user object if the email exist", () => {
-    request(app)
-      .post("/user/checkexistemail")
-      .send({
-        email: "theveryfirstuniquetesting@mail.com",
-      })
-      .then((res) => {
-        expect(res.status).toBe(200);
-        expect(res.body).toHaveProperty("user", expect.any(Object));
-        expect(res.body.user).toHaveProperty("id", expect.any(Number));
-        expect(res.body.user).toHaveProperty("username", expect.any(String));
-        expect(res.body.user).toHaveProperty("password", expect.any(String));
-        expect(res.body.user).toHaveProperty(
-          "profilePicture",
-          expect.any(String)
-        );
-        expect(res.body.user).toHaveProperty("role", "customer");
-      })
-      .catch((err) => {
-        done(err);
-      });
-  });
 });
 
 describe("Check existing username", () => {
-  it("Return null if the username doesn't exist", (done) => {
-    request(app)
-      .post("/user/checkexistusername")
-      .send({
-        username: "notthefirstmostuniqueusername",
-      })
-      .then((res) => {
-        expect(res.status).toBe(200);
-        expect(res.body).toHaveProperty("user", null);
-        done();
-      })
-      .catch((err) => {
-        done(err);
-      });
-  });
-
-  it("Return a user object if the username exist", () => {
+  
+  it("Return a user object if the username exist", (done) => {
     request(app)
       .post("/user/checkexistusername")
       .send({
@@ -143,6 +109,25 @@ describe("Check existing username", () => {
       .catch((err) => {
         done(err);
       });
+  });
+
+  it("Return null if the username doesn't exist", (done) => {
+    request(app)
+      .post("/user/checkexistusername")
+<<<<<<< HEAD
+      .send({
+        username: "notthefirstmostuniqueusername",
+      })
+      .then((res) => {
+=======
+      .send({ username: "notthefirstmostuniqueusername" })
+      .end((err, res)=>{
+        if(err) return done(err)
+>>>>>>> development
+        expect(res.status).toBe(200);
+        expect(res.body).toHaveProperty("user", null);
+        done();
+      })
   });
 });
 
@@ -164,29 +149,25 @@ describe("Register User", () => {
       .end((err, res) => {
         if (err) done(err);
         expect(res.status).toBe(201);
-        expect(res.body).toHaveProperty("id", expect.any(Number));
-        secondCustomerId = res.body.id;
         expect(res.body).toHaveProperty("access_token", expect.any(String));
         expect(res.body).toHaveProperty("user", expect.any(Object));
-        expect(res.body.user).toHaveProperty(User, expect.any(Object));
-        expect(res.body.user.User).toHaveProperty("id", expect.any(Number));
-        secondUserId = res.body.user.User.id;
-        expect(res.body.user.User).toHaveProperty(
+        expect(res.body.user).toHaveProperty("id", expect.any(Number));
+        expect(res.body.user).toHaveProperty(
           "username",
           expect.any(String)
         );
-        expect(res.body.user.User).toHaveProperty(
+        expect(res.body.user).toHaveProperty(
           "password",
           expect.any(String)
         );
-        expect(res.body.user.User).toHaveProperty(
+        expect(res.body.user).toHaveProperty(
           "profilePicture",
           expect.any(String)
         );
-        expect(res.body.user.User).toHaveProperty("role", expect.any(String));
+        expect(res.body.user).toHaveProperty("role", expect.any(String));
         const tempArrayRole = ["customer", "admin"];
         expect(tempArrayRole).toEqual(
-          expect.arrayContaining([res.body.user.User.role])
+          expect.arrayContaining([res.body.user.role])
         );
         done();
       });
@@ -199,6 +180,7 @@ describe("Login User", () => {
       .post("/user/login")
       .send({
         username: "thefirstmostuniqueusername",
+        password: "encryptedpassword"
       })
       .end((err, res) => {
         if (err) done(err);
@@ -217,6 +199,7 @@ describe("Login User", () => {
         expect(tempArrayRole).toEqual(
           expect.arrayContaining([res.body.user.role])
         );
+        done()
       });
   });
 
@@ -261,6 +244,7 @@ describe("Get user data", () => {
   it("should return a user object", (done) => {
     request(app)
       .post("/user/getdata")
+      .set('access_token', token)
       .send({
         username: "thefirstmostuniqueusername",
       })

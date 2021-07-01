@@ -25,6 +25,7 @@ module.exports = class Controller {
 
   static async payVirtualAccount(req, res, next) {
     const { externalID, amount } = req.body
+    console.log(externalID, amount,'keambil');
     const apiKey = Buffer.from(`${xenditSecretKey}:`).toString('base64')
     const Authorization = 'Basic ' + apiKey
     try {
@@ -36,6 +37,7 @@ module.exports = class Controller {
       })
       res.status(200).json(response.data)
     } catch (error) {
+      console.log(error,'======================>');
       next(error)
     }
   }
